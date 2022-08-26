@@ -22,8 +22,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jquery-turbolinks', '~> 2.1'
 gem 'jquery-rails', '~> 4.5'
-gem 'bootstrap', '~> 5.2'
-
+gem 'bootstrap', '~> 4.5'
+# gem 'poper', '~> 0.2.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.8', '>= 4.8.1'

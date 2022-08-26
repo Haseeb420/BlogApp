@@ -1,0 +1,47 @@
+
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4 mx-auto py-3 px-4 bg-white">
+      <h2 class="text-center">Log in</h2>
+      <hr class="border-primary mb-4">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group mb-3">
+          <%= f.label :email, class:'form-label' %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control' %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.label :password, class:'form-label'  %><br />
+          <%= f.password_field :password, autocomplete: "current-password",class:'form-control' %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="form-check mb-3">
+            <%= f.check_box :remember_me, class:'form-check-input' %>
+            <%= f.label :remember_me, class: 'form-check-label' %>
+          </div>
+        <% end %>
+
+        <div class="mb-3 mx-auto col-3">
+          <%= f.submit "Log In",:class => 'btn btn-primary' %>
+        </div>
+      <% end %>
+      <%# <div class="  ">
+        <%= render "devise/shared/links"
+      </div> %>
+      <div class="links row">
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to "Forgot your password?", new_password_path(resource_name),class:'col-6 d-inline-block mb-2 mr-2 ' %>
+            <% end %>
+            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <%= link_to "Sign up", new_registration_path(resource_name),class:'col-4 d-inline-block mb-2 ms-auto' %>
+            <% end %>
+
+            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+              <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name),class:'col-12 d-block text-center' %>
+            <% end %>
+      </div>
+    </div>
+  </div>
+</div>
