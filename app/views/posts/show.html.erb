@@ -1,2 +1,16 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container bg-white">
+  <div class="row py-3">
+    <h3 class="mb-5"><%= @post.title %></h3>
+    <%= image_tag @post.header_img, alt: "text", class: 'img-thumbnail post-header-img mb-3' %>
+    <p class="lead text-start">
+      <%= @post.body%>
+    </p>
+    <hr>
+    <div class="col-3 me-auto">
+      <%= date_formatter @post.published_date %>
+    </div>
+    <div class="col-3 ms-auto">
+      Authur: <%= authur_name_by_id @post.user_id %>
+    </div>
+  </div>
+</div>

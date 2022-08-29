@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    # flash.now[:error] = "Could not save client"
+    @posts = Post.all
   end
 
   def about
