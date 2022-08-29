@@ -6,5 +6,4 @@ class HomeController < ApplicationController
   def about
     # something
   end
-
 end

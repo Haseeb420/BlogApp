@@ -48,6 +48,14 @@
             </div>
           </div>
 
+          <div class="row g-3 mb-3">
+            <div class="col">
+              <%= f.label :profile_img, class:'form-label' %>
+
+              <%= f.file_field :profile_img,class:'form-control', placeholder:'Profile Img',aria_label:"Profile Img" %>
+            </div>
+          </div>
+
           <div class="my-3">
             <%= f.submit "Sign up", :class => 'btn btn-success col-4 mx-auto d-block' %>
           </div>
