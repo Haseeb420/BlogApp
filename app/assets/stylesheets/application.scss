@@ -34,7 +34,15 @@ body{
   color:$secandaryBackground;
   background-color: $primaryBackground;
 }
-
+.text-truncate-container {
+  width: 250px;
+}
+.text-truncate-container p {
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+} 
 #navbar{
   .navbar-brand{
     font-size: calc(100%*2);

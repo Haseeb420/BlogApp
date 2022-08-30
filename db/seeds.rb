@@ -12,3 +12,6 @@ PostCategory.create(
 PostCategory.create(
   category_name: 'Daily Life'
 )
+PostCategory.create(
+  category_name: 'Sports'
+)

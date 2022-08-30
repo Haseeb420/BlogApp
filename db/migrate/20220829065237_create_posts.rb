@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.text :body
       t.date :published_date
+      t.integer :likes
       t.references :user, index: true, null: false
       t.references :post_category, foreign_key: true
 

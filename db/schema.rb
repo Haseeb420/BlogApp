@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2022_08_29_065237) do
     t.string "title", null: false
     t.text "body"
     t.date "published_date"
+    t.integer "likes"
     t.integer "user_id", null: false
     t.integer "post_category_id"
     t.datetime "created_at", null: false
@@ -57,6 +58,10 @@ ActiveRecord::Schema.define(version: 2022_08_29_065237) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name"

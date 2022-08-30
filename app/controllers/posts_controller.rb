@@ -13,6 +13,16 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def likes
+    @post = Post.find(params[:id])
+    @post.likes = 1 if @post.likes.nil?
+    @post.likes+=1
+    @post.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @post = Post.new(post_param)
     @post.published_date = Date.today.to_s

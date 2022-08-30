@@ -16,11 +16,30 @@
               <%= image_tag post.header_img, alt: "header_img" %>
             </div>
             <div class="col-10">
-              <h5 class="card-title"><%= post.title %></h5>
-              <p class="card-title"><%= post.body %></p>
-              <hr>
-              <%= date_formatter post.published_date %>
-              <%= link_to 'Show Details', post_path(post)  %>
+              <h5 class="card-title"><%= post.title.truncate(200) %></h5>
+              <p class=" text-muted fs-6"><%= post.body.truncate(400) %></p>
+            </div>
+          </div>
+          <div class="card-footer row p-2">
+            <div class="col-4">
+              <p> <strong>Created at:</strong> <%= date_formatter post.published_date %></p>
+            </div>
+            <div class="col-4">
+              <p id="likes">
+              </p>
+              <% if post.likes.nil? %>
+                <%= link_to post_likes_path(id:post.id),class:'text-dark text-decoration-none', remote:true do %>
+                  <p><span  id="post_likes"></span> <i class="fa-solid fa-thumbs-up fs-5"></i> </p>
+                <% end %>
+                <%# <a><i class=""></i></a> %>
+              <% else %>
+                <%= link_to post_likes_path(id:post.id),class:'text-primary text-decoration-none', remote:true do %>
+                  <p> <span  id="post_likes"><%= post.likes %></span> <i class="fa-solid fa-thumbs-up fs-5"></i>  </p>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col-4">
+              <%= link_to 'Show Details', post_path(post),class:'btn btn-info ms-auto ' %>
             </div>
           </div>
         </div>
