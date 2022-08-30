@@ -24,7 +24,6 @@ gem 'jquery-turbolinks', '~> 2.1'
 gem 'jquery-rails', '~> 4.5'
 # gem 'bootstrap', '~> 4.5'
 gem 'bootstrap', '~> 5.2'
-gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'popper_js', '~> 2.11', '>= 2.11.5'
 # gem 'poper', '~> 0.2.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -36,7 +35,7 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_29_065237) do
+ActiveRecord::Schema.define(version: 2022_08_30_132723) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,10 +33,30 @@ ActiveRecord::Schema.define(version: 2022_08_29_065237) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id"
+    t.integer "post_id"
+    t.date "commented_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "post_categories", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "post_likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_likes_on_post_id"
+    t.index ["user_id"], name: "index_post_likes_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
