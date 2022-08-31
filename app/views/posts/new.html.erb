@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3">
           <%= f.label :body, class:'form-label' %>
-          <%= f.text_area :body, class: 'form-control', placeholder:'Enter Post body'%>
+          <%= f.trix_editor :body, required: true, autofocus: true %>
         </div>
         <%= f. submit "Create Post ",:class=>'btn btn-success col-3 ms-auto d-block'%>
       <% end %>

@@ -3,7 +3,7 @@
     <h3 class="mb-5"><%= @post.title %></h3>
     <%= image_tag @post.header_img, alt: "text", class: 'img-thumbnail post-header-img mb-3' %>
     <p class="lead text-start">
-      <%= @post.body%>
+      <%= @post.body.html_safe%>
     </p>
     <hr>
     <div class="col-3 me-auto">
