@@ -16,7 +16,7 @@
             </div>
             <div class="col-10">
               <h5 class="card-title"><%= post.title %></h5>
-              <p class="card-title"><%= post.body %></p>
+              <p class="card-title"><%= post.body.html_safe %></p>
               <hr>
               <%= date_formatter post.published_date %>
               <%= link_to 'Show Details', post_path(post)  %>

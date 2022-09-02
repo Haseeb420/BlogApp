@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [:show]
+  before_action :set_post, except:[:create,:index,:new]
   def index
-    @posts = Post.all.where("user_id=?", current_user.id)
+    @posts = Post.all
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def new
@@ -14,10 +14,7 @@ class PostsController < ApplicationController
   end
 
   def likes
-    @post = Post.find(params[:id])
-    @post.likes = 1 if @post.likes.nil?
-    @post.likes+=1
-    @post.save
+    @post.increse_likes
     respond_to do |format|
       format.js
     end
@@ -44,4 +41,9 @@ class PostsController < ApplicationController
   def post_param
     params.require(:post).permit(:title,:body,:header_img,:post_category_id)
   end
+
+  def set_post
+    @post = @post = Post.find(params[:id])
+  end
+
 end

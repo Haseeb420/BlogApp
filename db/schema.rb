@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_08_29_065237) do
     t.string "title", null: false
     t.text "body"
     t.date "published_date"
-    t.integer "likes"
+    t.integer "likes", default: 0
     t.integer "user_id", null: false
     t.integer "post_category_id"
     t.datetime "created_at", null: false
