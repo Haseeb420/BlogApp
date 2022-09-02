@@ -13,11 +13,11 @@
         <div class="card post mb-4 rounded">
           <div class="card-body row  p-2">
             <div class="col-2  post-card-img">
-              <%= image_tag post.header_img, alt: "header_img" %>
+              <%= image_tag (post.header_img if ! post.header_img.nil?), alt: "header_img" %>
             </div>
             <div class="col-10">
               <h5 class="card-title"><%= post.title.truncate(200) %></h5>
-              <p class=" text-muted fs-6"><%= post.body.truncate(400) %></p>
+              <p class=" text-muted fs-6"><%= post.body.truncate(400).html_safe %></p>
             </div>
           </div>
           <div class="card-footer row p-2">
@@ -29,12 +29,14 @@
               </p>
               <% if post.likes.nil? %>
                 <%= link_to post_likes_path(id:post.id),class:'text-dark text-decoration-none', remote:true do %>
-                  <p><span  id="post_likes"></span> <i class="fa-solid fa-thumbs-up fs-5"></i> </p>
+                  <%= icon("fa-solid","thumbs-up", class: 'fa-shake') %>
+                  <p><span  id="post_likes-<%= post.id %>"></span> </p>
                 <% end %>
-                <%# <a><i class=""></i></a> %>
               <% else %>
                 <%= link_to post_likes_path(id:post.id),class:'text-primary text-decoration-none', remote:true do %>
-                  <p> <span  id="post_likes"><%= post.likes %></span> <i class="fa-solid fa-thumbs-up fs-5"></i>  </p>
+                  <p> <span  id="post_likes-<%= post.id %>"><%= post.likes %></span>
+                    <%= icon("fa-solid","thumbs-up", class: 'fa-shake') %>
+                  </p>
                 <% end %>
               <% end %>
             </div>

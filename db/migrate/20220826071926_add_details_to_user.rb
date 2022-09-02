@@ -5,5 +5,6 @@ class AddDetailsToUser < ActiveRecord::Migration[5.2]
     add_column :users, :username, :string
     add_column :users, :about, :text
     add_column :users, :birthday, :date
+    add_column :users, :number_of_comments, :integer, default:0
   end
 end

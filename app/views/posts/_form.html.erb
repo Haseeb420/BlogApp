@@ -1,0 +1,21 @@
+<div class="col-lg-8 mx-auto">
+  <%= form_with model:@post, local:true do |f| %>
+    <div class="mb-3">
+      <%= f.label :title, class:'form-label' %>
+      <%= f.text_field :title, class: 'form-control', placeholder:'Enter Post Title '%>
+    </div>
+    <div class="mb-3">
+      <%= f.label :post_category_id,'Post Category', class:'form-label' %>
+      <%= f.select(:post_category_id, options_from_collection_for_select(PostCategory.all, :id, :category_name),{},{class:'form-select'}) %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :header_img,'Title Image', class:'form-label' %>
+      <%= f.file_field :header_img, class:"form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :body, class:'form-label' %>
+      <%= f.trix_editor :body, class: 'form-control', placeholder:'Enter Post body'%>
+    </div>
+    <%= f. submit "Create Post ",:class=>'btn btn-success col-3 ms-auto d-block'%>
+  <% end %>
+</div>

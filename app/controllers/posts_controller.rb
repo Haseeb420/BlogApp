@@ -2,10 +2,12 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [:show]
   def index
-    @posts = Post.all.where("user_id=?", current_user.id)
+    # @posts = Post.includes(:comments).where(user_id: current_user.id).limit(10).ordered
+    @posts = Post.all.where("user_id=?", current_user.id).ordered
   end
 
   def show
+    # @post = Post.includes(:comments).where(id:params[:id]).first
     @post = Post.find(params[:id])
   end
 
@@ -25,7 +27,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_param)
-    @post.published_date = Date.today.to_s
+    # @post.published_date = Date.today.to_s
     @post.user_id = current_user.id
 
     respond_to do |format|
@@ -43,5 +45,9 @@ class PostsController < ApplicationController
 
   def post_param
     params.require(:post).permit(:title,:body,:header_img,:post_category_id)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
