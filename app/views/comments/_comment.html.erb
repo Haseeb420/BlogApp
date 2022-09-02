@@ -10,23 +10,22 @@
       </div>
       <div class="card-footer">
         <div class="col-3 ms-auto">
-          <span onload="get_comment_likes_by(<%=comment.id %>)" id="comment-<%= comment.id%>-likes"></span>
           <%= link_to add_comment_like_path(comment_id: comment.id), remote:true do  %>
             <%= icon("fa-solid","thumbs-up") %>
           <% end %>
           <%= link_to 'reply', new_post_comment_path(@post, parent_id: comment.id), remote: true, class: 'd-inline btn btn-light ' %>
         </div>
       </div>
-    <% end %>
-    <% if comment.replies.any? %>
-      <div class="row">
-        <% comment.replies.each do |reply| %>
-          <%= render partial: 'comments/reply', locals: { reply: reply } %>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="col-10 mx-auto">
-      <div id="reply-form-<%= comment.id %>"></div>
+      <% if comment.replies.any? %>
+        <div class="row" id="comment-reply-<%= comment.id%>">
+          <% comment.replies.each do |reply| %>
+            <%= render partial: 'comments/reply', locals: { reply: reply } %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
+  <% end %>
+  <div class="col-10 mx-auto">
+    <div id="reply-form-<%= comment.id %>"></div>
   </div>
 </div>

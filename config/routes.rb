@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'home/about' => 'home#about', as: 'about_page'
   get  'post/likes/:id' => 'posts#likes', as: 'post_likes'
   get 'comment/likes/:comment_id'=> 'comment_likes#index', as: 'add_comment_like'
+  post '/posts/:post_id/comments-reply'=> 'comments#reply', as: 'comment_reply'
   resources :posts do
     resources :comments
   end
