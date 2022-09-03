@@ -12,5 +12,5 @@ class Post < ApplicationRecord
 
 
   #scope are defined here
-  scope :ordered, ->{ order(published_date: :desc)}
+  scope :ordered, ->{ order(:published_date)}
 end
