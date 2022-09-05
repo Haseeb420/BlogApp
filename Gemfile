@@ -25,7 +25,6 @@ gem 'trix-rails', require: 'trix'
 gem 'jquery-rails', '~> 4.5'
 # gem 'bootstrap', '~> 4.5'
 gem 'bootstrap', '~> 5.2'
-gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'popper_js', '~> 2.11', '>= 2.11.5'
 # gem 'poper', '~> 0.2.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
