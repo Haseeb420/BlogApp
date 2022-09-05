@@ -12,10 +12,10 @@
   </div>
   <div class="row">
     <div class="col-12 mx-auto">
-      <%= render @posts %>
+      <%= render @posts if !@posts.nil? %>
     </div>
     <div class="col-12 mx-auto bg-white">
-      <%= paginate @posts %>
+      <%= paginate @posts if !@posts.nil? %>
     </div>
   </div>
 </div>

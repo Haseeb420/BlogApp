@@ -31,12 +31,16 @@ gem 'popper_js', '~> 2.11', '>= 2.11.5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem "font-awesome-sass", "~> 6.2.0"
+
+#for mails styling
+gem 'nokogiri'
+gem 'premailer-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'trix-rails', require: 'trix'
-gem "font-awesome-sass", "~> 6.2.0"
+
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
 gem 'kaminari'
