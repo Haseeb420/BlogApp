@@ -1,6 +1,7 @@
+require 'user_permissions'
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  include UserPersmissions
   protected
 
   def configure_permitted_parameters

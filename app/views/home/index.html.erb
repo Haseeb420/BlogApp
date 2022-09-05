@@ -2,8 +2,12 @@
   <div class="row">
     <div class="col-12">
       <h3>Welcome to Blogspot</h3>
+      <%= :notice %>
       <p>Here you can read tons of blogs to increase your knowledge. </p>
-      <p>You can also write your own blogs. </p>
+      <p>You can also write your own blogs.</p>
+      <p><% if current_user %>
+          <%= current_user.user_role %>
+        <% end %></p>
     </div>
   </div>
 </div>
