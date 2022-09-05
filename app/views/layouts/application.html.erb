@@ -8,11 +8,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-  <div class="p-0 ">
-   <%= render 'shared/navbar' %>
-    <%= render 'shared/alert' %>
-    <%= yield %>
-  </div>
-
+    <div class="p-0 ">
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/alert' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

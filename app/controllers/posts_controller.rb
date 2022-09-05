@@ -3,10 +3,13 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
   before_action :set_post, except:[:create,:index,:new]
   def index
-    @posts = Post.all
+    # @posts = Post.includes(:comments).where(user_id: current_user.id).limit(10).ordered
+    @posts = Post.all.where("user_id=?", current_user.id).ordered
   end
 
   def show
+    # @post = Post.includes(:comments).where(id:params[:id]).first
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -22,7 +25,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_param)
-    @post.published_date = Date.today.to_s
+    # @post.published_date = Date.today.to_s
     @post.user_id = current_user.id
 
     respond_to do |format|
@@ -43,7 +46,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
-
 end

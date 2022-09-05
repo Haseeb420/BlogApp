@@ -4,9 +4,10 @@ class HomeController < ApplicationController
     if is_moderator?
       redirect_to controller:"moderators", action: "index"
     end
-    redirect_to controller:"moderators", action: "index"
-
-    @posts = Post.all
+      @posts = Post.all
+      @posts = Post.ordered.page(params[:page]).per(10)
+    # @posts = Post.ordered.page(params[:page]).per(5)
+    # @posts = Post.all
   end
 
   def about

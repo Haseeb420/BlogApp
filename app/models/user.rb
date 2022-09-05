@@ -12,4 +12,10 @@ class User < ApplicationRecord
     self.user_role ||= :user
   end
   has_one_attached :profile_img
+  has_many :posts
+  has_many :comments
+  has_one :post_like
+  has_one :comment_like
+  #all relations are ends here
+
 end

@@ -24,17 +24,20 @@ $robotoFont:'Roboto', sans-serif;
 $defaultFontSize:14px;
 $primaryBackground:#e0e0e0;
 // $primaryBackground:#EAEAEA;
-$secandaryBackground:#252A34;
-$headingColor:#FF2E63;
-*{
-  margin:0px;
+$secandaryBackground: #252a34;
+$headingColor: #ff2e63;
+* {
+  margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
-body{
+a {
+  text-decoration: none;
+}
+body {
   font-family: $poppinFont;
   font-size: $defaultFontSize;
-  color:$secandaryBackground;
+  color: $secandaryBackground;
   background-color: $primaryBackground;
 }
 .text-truncate-container {
@@ -56,22 +59,22 @@ body{
     letter-spacing: 3px;
     transition: all 1s ease-in-out;
   }
-  .navbar-brand:hover{
-    color:$headingColor;
+  .navbar-brand:hover {
+    color: $headingColor;
   }
 
-  .nav-item a{
-    font-size: calc(100% + 4px );
+  .nav-item a {
+    font-size: calc(100% + 4px);
     font-weight: 500;
   }
 }
-#sign-up-box{
-  .img-section{
+#sign-up-box {
+  .img-section {
     position: relative;
     padding: 0;
     background-color: rgba($color: rgb(0, 0, 0), $alpha: 0.5);
   }
-  .img-section img{
+  .img-section img {
     position: absolute;
     width: 100%;
     height: 100%;

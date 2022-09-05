@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="card post mb-3 col-11 mx-auto">
+    <div class="card-body px-0">
+      <div class="row p-0">
+        <div class="col-2 post-card-img">
+          <%= image_tag (post.header_img if ! post.header_img.nil?), alt: "header_img" %>
+        </div>
+        <div class="col-10 ps-5">
+          <h5 class="card-title"><%= post.title.truncate(200) %></h5>
+          <p class=" text-muted fs-6"><%= post.body.truncate(300).html_safe %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <p> <strong>Created at:</strong> <%= date_formatter post.published_date %></p>
+        </div>
+        <div class="col-4">
+          <p id="likes">
+          </p>
+          <% if post.likes.nil? %>
+            <%= link_to post_likes_path(id:post.id),class:'text-dark text-decoration-none', remote:true do %>
+              <%= icon("fa-solid","thumbs-up", class: 'fa-shake') %>
+              <p><span  id="post_likes-<%= post.id %>"></span> </p>
+            <% end %>
+          <% else %>
+            <%= link_to post_likes_path(id:post.id),class:'text-primary text-decoration-none', remote:true do %>
+              <p> <span  id="post_likes-<%= post.id %>"><%= post.likes %></span>
+                <%= icon("fa-solid","thumbs-up", class: 'fa-shake') %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-4">
+          <%= link_to 'Show Details', post_path(post),class:'btn btn-link ms-auto ' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
