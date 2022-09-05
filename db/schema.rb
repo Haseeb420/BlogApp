@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2022_09_04_153108) do
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
+ActiveRecord::Schema.define(version: 2022_08_29_065237) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false

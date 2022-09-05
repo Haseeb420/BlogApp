@@ -1,0 +1,13 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-card-img img{
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+}
+.post-header-img{
+  width: 100%;
+  max-height: 600px;
+}

@@ -6,6 +6,7 @@ class HomeController < ApplicationController
     end
     redirect_to controller:"moderators", action: "index"
 
+    @posts = Post.all
   end
 
   def about
@@ -13,7 +14,5 @@ class HomeController < ApplicationController
   end
 
   private
-
-
 
 end

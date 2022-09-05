@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
+  <div class="row p-3">
+    <div class="col-12 py-3 rounded mb-3 bg-white">
       <h3>Welcome to Blogspot</h3>
       <%= :notice %>
       <p>Here you can read tons of blogs to increase your knowledge. </p>
@@ -8,6 +8,26 @@
       <p><% if current_user %>
           <%= current_user.user_role %>
         <% end %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <% @posts.each do |post| %>
+        <div class="card post mb-4 rounded">
+          <div class="card-body row  p-2">
+            <div class="col-2  post-card-img">
+              <%= image_tag post.header_img, alt: "header_img" %>
+            </div>
+            <div class="col-10">
+              <h5 class="card-title"><%= post.title %></h5>
+              <p class="card-title"><%= post.body.html_safe %></p>
+              <hr>
+              <%= date_formatter post.published_date %>
+              <%= link_to 'Show Details', post_path(post)  %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

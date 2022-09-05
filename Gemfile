@@ -21,8 +21,12 @@ gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 gem 'jquery-turbolinks', '~> 2.1'
+gem 'trix-rails', require: 'trix'
 gem 'jquery-rails', '~> 4.5'
+# gem 'bootstrap', '~> 4.5'
 gem 'bootstrap', '~> 5.2'
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+gem 'popper_js', '~> 2.11', '>= 2.11.5'
 # gem 'poper', '~> 0.2.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -41,7 +45,8 @@ gem 'mini_magick', '~> 4.8'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'figaro', '~> 1.2'
+# gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
