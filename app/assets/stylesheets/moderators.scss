@@ -1,0 +1,13 @@
+#sidebar {
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+#sidebar,
+#dashboard-content {
+  height: 100vh;
+}
+#dashboard-content {
+  overflow-y: scroll;
+}

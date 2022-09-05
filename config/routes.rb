@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
   get 'home/index' => 'home#index', as: 'welcome_page'
-  get 'home/about' => 'home#about', as: 'about_page'  
+  get 'home/about' => 'home#about', as: 'about_page'
+  get "moderators/dashboard" => 'moderators#index',as: 'moderator_dashboard'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

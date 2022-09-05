@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
 
   def index
-    if is_admin?
-      flash.now[:notice] = "admin"
-
+    if is_moderator?
+      redirect_to controller:"moderators", action: "index"
     end
-    flash.now[:notice] = "other user"
+    redirect_to controller:"moderators", action: "index"
+
   end
 
   def about

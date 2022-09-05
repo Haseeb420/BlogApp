@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlogApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2 bg-dark text-white" id="sidebar">
+          <%= render 'shared/dashboard/sidebar' %>
+        </div>
+        <div class="col-10 p-0" id="dashboard-content">
+          <%= render 'shared/dashboard/dashboard_nav' %>
+          <%= render 'shared/alert' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
