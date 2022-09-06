@@ -31,5 +31,5 @@ test:
 production:
   <<: *default
   database: blog_app_production
-  username: blog-site-pk
+  username: blog-site-h
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
