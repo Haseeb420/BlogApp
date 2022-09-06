@@ -23,6 +23,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def recent
+    @posts = Post.recents_week_post
+    respond_to do |format|
+      format.js 
+    end
+  end
+
   def create
     @post = Post.new(post_param)
     # @post.published_date = Date.today.to_s

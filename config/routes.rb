@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'home/index' => 'home#index', as: 'welcome_page'
   get 'home/about' => 'home#about', as: 'about_page'
-  get "moderators/dashboard" => 'moderators#index',as: 'moderator_dashboard'
+  get 'post/recent-post' => 'posts#recent', as: 'recent_post'
+
   get  'post/likes/:id' => 'posts#likes', as: 'post_likes'
   get 'comment/likes/:comment_id'=> 'comment_likes#index', as: 'add_comment_like'
   post '/posts/:post_id/comments-reply'=> 'comments#reply', as: 'comment_reply'
@@ -14,6 +15,12 @@ Rails.application.routes.draw do
     resources :comments
   end
   # resources :comments_likes
+
+  # moderators routes starts here
+
+  get "moderators/dashboard" => 'moderators#index',as: 'moderator_dashboard'
+  get "moderators/recent-post" => 'moderators#recent_post',as: 'moderator_recent_post'
+  get "moderators/post-approval/(:post_id)" => 'moderators#approved_post',as: 'post_approval'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

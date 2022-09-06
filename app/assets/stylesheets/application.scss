@@ -15,14 +15,14 @@
  *= trix
  */
 @import "font-awesome";
-@import 'trix';
-@import 'bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-$poppinFont:'Poppins', sans-serif ;
-$antonFont:'Anton', sans-serif;
-$robotoFont:'Roboto', sans-serif;
-$defaultFontSize:14px;
-$primaryBackground:#e0e0e0;
+@import "trix";
+@import "bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+$poppinFont: "Poppins", sans-serif;
+$antonFont: "Anton", sans-serif;
+$robotoFont: "Roboto", sans-serif;
+$defaultFontSize: 14px;
+$primaryBackground: #e0e0e0;
 // $primaryBackground:#EAEAEA;
 $secandaryBackground: #252a34;
 $headingColor: #ff2e63;
@@ -49,9 +49,9 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-#navbar{
-  .navbar-brand{
-    font-size: calc(100%*2);
+#navbar {
+  .navbar-brand {
+    font-size: calc(100% * 2);
     font-weight: 600;
     // color:#08D9D6;
     text-transform: uppercase;

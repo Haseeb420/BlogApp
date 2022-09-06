@@ -5,7 +5,7 @@ class HomeController < ApplicationController
       @posts = Post.all
       @posts = Post.ordered.page(params[:page]).per(10)
     else
-      if is_moderator?
+      if current_user.moderator?
         redirect_to controller:"moderators", action: "index"
       else
         @posts = Post.all

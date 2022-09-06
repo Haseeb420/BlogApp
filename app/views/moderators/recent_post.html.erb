@@ -1,0 +1,34 @@
+<div class="row px-3 bg-white">
+  <h2 class="mb-3 p-4">Posts </h2>
+<hr>
+
+
+<table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">post $</th>
+        <th  scope="col">Post Title</th>
+        <th scope="col">Published Date</th>
+        <th scope="col">Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="post_data">
+        <% @posts.each do |post| %>
+        <tr>
+          <th scope="row"><%= post.id %>
+          </th>
+            <td class="col-4"><%= post.title.truncate(100) %></td>
+            <td><%= date_formatter post.published_date %></td>
+            <td id="post-<%= post.id%>-status" ><%= post_status_show post.status %></td>
+            <td>
+            <%= link_to "Details", root_path, class:"btn mx-auto btn-info" %>
+            <%= link_to "Approved", post_approval_path(post_id:post.id),remote:true, class:"btn mx-auto btn-success" %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+
+

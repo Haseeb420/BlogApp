@@ -2,9 +2,9 @@
   <div class="row py-3 px-5 lh-base fs-5">
     <h3 class="mb-5"><%= @post.title %></h3>
     <%= image_tag @post.header_img, alt: "text", class: 'img-thumbnail post-header-img mb-3' %>
-    <p class="lh-base">
+    <div class="lh-base post_body">
       <%= @post.body.html_safe%>
-    </p>
+    </div>
     <hr>
     <div class="col-3 me-auto">
       <%= date_formatter @post.published_date %>

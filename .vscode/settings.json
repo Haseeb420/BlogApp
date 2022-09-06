@@ -11,5 +11,8 @@
   "ruby.rubocop.configFilePath": "/path/to/config/.rubocop.yml",
 
   // default true
-  "ruby.rubocop.onSave": true
+  "ruby.rubocop.onSave": true,
+  "files.associations": {
+    "*.html.erb": "erb"
+  }
 }

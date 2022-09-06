@@ -1,9 +1,9 @@
-<%= link_to "BlogSite",root_path,class:'h3 mb-5'  %>
+<%= link_to "BlogSite",root_path,class:'h3  mb-5 p-5'  %>
 <nav class="nav mt-3 flex-column p-5">
-  <%= link_to "Dashboard", root_path, class:'nav-link text-normal h6 mb-2' %>
-  <%= link_to "Post Categories",root_path, class:'nav-link  text-normal h6 mb-2'%>
-  <%= link_to "Posts",root_path, class:'nav-link  text-normal h6 mb-2'%>
+  <%= link_to "Dashboard", moderator_dashboard_path, class:'nav-link text-normal h6 mb-2' %>
+  <%= link_to "Recent Posts",moderator_recent_post_path, class:'nav-link  text-normal h6 mb-2'%>
   <%= link_to "Reported Post",root_path, class:'nav-link  text-normal h6 mb-2'%>
+  <%# <%= link_to "Reported Post",root_path, class:'nav-link  text-normal h6 mb-2'%>
   <%= link_to "Suggestion",root_path, class:'nav-link  text-normal h6  mb-2'%>
 </nav>
 <%# <ul class="nav nav-pills flex-column">
