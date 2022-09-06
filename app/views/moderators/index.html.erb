@@ -1,11 +1,10 @@
 <div class="row p-3 bg-white">
   <h2>Dashboard</h2>
   <hr>
-<%= render 'moderators/header' %>
-
-<h3>Recent Post</h3>
-<hr>
-<table class="table table-striped">
+  <%= render 'moderators/shared/header' %>
+  <h3>Recent Post</h3>
+  <hr>
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">post $</th>
@@ -15,17 +14,15 @@
       </tr>
     </thead>
     <tbody id="post_data">
-        <% @posts.each do |post| %>
+      <% @posts.each do |post| %>
         <tr>
           <th scope="row"><%= post.id %>
           </th>
-            <td><%= post.title.truncate(100) %></td>
-            <td><%= date_formatter post.published_date %></td>
-            <td><%= post_status_show post.status %></td>
+          <td><%= post.title.truncate(100) %></td>
+          <td><%= date_formatter post.published_date %></td>
+          <td><%= post_status_show post.status %></td>
         </tr>
-        <% end %>
+      <% end %>
     </tbody>
   </table>
 </div>
-
-
