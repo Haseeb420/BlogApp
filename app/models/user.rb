@@ -4,13 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,:confirmable
 
-
-
-  has_one_attached :profile_img
-  has_many :posts
-  has_many :comments
-  has_one :post_like
-  has_one :comment_like
+  has_one_attached :profile_img,dependent: :destroy
+  has_many :posts,dependent: :destroy
+  has_many :comments,dependent: :destroy
+  has_one :post_like,dependent: :destroy
+  has_one :comment_like,dependent: :destroy
+  has_many :reported_posts,dependent: :destroy
   #all relations are ends here
 
   scope :recents_week_users, ->  {where("created_at > ?", Time.now-7.days)}

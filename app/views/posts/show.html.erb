@@ -1,4 +1,8 @@
 <div class="container bg-white mb-4">
+    <div class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0" id="report-msg" role="alert">
+    <strong>Thanks</strong> Your response has been submitted.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <div class="row py-3 px-5 lh-base fs-5">
     <h3 class="mb-5"><%= @post.title %></h3>
     <%= image_tag @post.header_img, alt: "text", class: 'img-thumbnail post-header-img mb-3' %>
@@ -10,11 +14,17 @@
       <%= date_formatter @post.published_date %>
     </div>
     <div class="col-3 ms-auto">
+      <button class="btn" onclick="show_report_form('reported-post-<%= @post.id %>')">Report Post</button>
+    </div>
+    <div class="col-3 ms-auto">
       Author: <%= authur_name_by_id @post.user_id %>
     </div>
   </div>
 </div>
 <div class="container">
+  <div class="row" id="reported-post-<%= @post.id %>">
+    <%= render 'reported_posts/form'%>
+  </div>
   <div class="row bg-white py-4 mb-2">
     <h4 class="px-3">Comments</h4>
   </div>
@@ -23,3 +33,11 @@
   </div>
   <%= render 'comments/form' %>
 </div>
+
+<script>
+$("#reported-post-<%= @post.id %>").hide();
+$('#report-msg').hide()
+function show_report_form(post_id){
+  $(`#${post_id}`).show();
+}
+</script>

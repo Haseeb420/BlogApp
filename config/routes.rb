@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  get 'reported_post/index'
+  get 'reported_post/new'
   get 'comments/index'
   get 'comments/new'
   get 'comments/show'
@@ -13,6 +16,7 @@ Rails.application.routes.draw do
   post '/posts/:post_id/comments-reply'=> 'comments#reply', as: 'comment_reply'
   resources :posts do
     resources :comments
+    resources :reported_posts
   end
   # resources :comments_likes
 
@@ -21,6 +25,7 @@ Rails.application.routes.draw do
   get "moderators/dashboard" => 'moderators#index',as: 'moderator_dashboard'
   get "moderators/recent-post" => 'moderators#recent_post',as: 'moderator_recent_post'
   get "moderators/post-approval/(:post_id)" => 'moderators#approved_post',as: 'post_approval'
+  get "moderators/reported-posts" => 'moderators#reported_post',as: 'reported_post'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -26,5 +26,8 @@ module PostsHelper
       "Not Approved"
     end
   end
+  def counter_post_reported_last_week
+    ReportedPost.count
+  end
 
 end

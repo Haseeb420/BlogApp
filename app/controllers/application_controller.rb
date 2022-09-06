@@ -1,5 +1,9 @@
 require 'user_permissions'
 class ApplicationController < ActionController::Base
+  rescue_from CanCan::AccessDenied do
+    flash[:error] = 'Access denied!'
+    redirect_to root_url
+  end
   before_action :configure_permitted_parameters, if: :devise_controller?
   include UserPersmissions
   protected

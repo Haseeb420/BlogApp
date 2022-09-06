@@ -34,6 +34,8 @@ class ModeratorsController < ApplicationController
     end
   end
 
+  def reported_post
+  end
   private
 
   def set_posts

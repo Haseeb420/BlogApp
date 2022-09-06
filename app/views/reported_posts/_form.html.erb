@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 mx-auto bg-white">
+    <div class="col-10 mx-auto bg-white">
       <div class="new-comment-error"></div>
-      <h4>Add a comment:</h4>
-      <%= form_with(model: [ @post, @post.comments.build ], remote: true) do |f| %>
+      <h4>Write Reason to report this post:</h4>
+      <%= form_with(model: [ @post, @post.reported_posts.build ], remote: true) do |f| %>
         <div class="form-group mb-3">
-          <%= f.trix_editor :body,class:'form-control', required: true, autofocus: true %>
+          <%= f.text_field :reason,class:'form-control', required: true, autofocus: true %>
         </div>
         <p>
           <%= f.submit "Add Comment",:class=>'btn btn-secondary col-2 ms-auto d-block' %>
@@ -14,5 +14,3 @@
     </div>
   </div>
 </div>
-
-
