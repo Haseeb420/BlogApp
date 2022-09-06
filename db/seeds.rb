@@ -15,3 +15,21 @@ PostCategory.create(
 PostCategory.create(
   category_name: 'Sports'
 )
+
+User.create(
+  first_name:'admin',
+  last_name: 'admin',
+  birthday:"2000-08-01",
+  user_role:"admin",
+  email: 'admin@gmail.com',
+  :encrypted_password => 'password'
+)
+
+User.create(
+  first_name:'moderator',
+  last_name: 'moderator',
+  birthday:"2000-08-01",
+  user_role:"moderator",
+  email: 'moderator@gmail.com',
+  :encrypted_password => 'password'
+)

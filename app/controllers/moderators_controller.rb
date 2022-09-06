@@ -35,6 +35,7 @@ class ModeratorsController < ApplicationController
   end
 
   def reported_post
+    @reports = ReportedPost.all.order(created_at: :desc)
   end
   private
 

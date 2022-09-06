@@ -15,15 +15,17 @@ class Post < ApplicationRecord
 
   after_initialize :set_default_role, :if => :new_record?
 
-  private
-
-  def set_default_role
-    self.status ||= :not_approved
-  end
 
   def increse_likes
     self.likes = likes + 1
     save
     likes
   end
+  private
+
+  def set_default_role
+    self.status ||= :not_approved
+  end
+
+
 end

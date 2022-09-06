@@ -1,4 +1,28 @@
 <div class="row px-3 bg-white">
   <h1>Reported Post</h1>
   <hr>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">post#</th>
+        <th  scope="col">Reason</th>
+        <th scope="col">Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="post_data">
+        <% @reports.each do |report| %>
+        <tr>
+          <th scope="row"><%= report.id %>
+          </th>
+            <td class="col-4"><%= report.reason%> </td>
+            <td>
+            <%= link_to "Details", root_path, class:"btn mx-auto btn-info" %>
+            <%= link_to "Approved", report_approval_path(report_id:post.id),remote:true, class:"btn mx-auto btn-success" %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
 </div>
+
