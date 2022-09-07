@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   def recent
     @posts = Post.recents_week_post
     respond_to do |format|
-      format.js 
+      format.js
     end
   end
 

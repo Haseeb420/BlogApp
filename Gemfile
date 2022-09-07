@@ -47,6 +47,7 @@ gem 'premailer-rails'
 gem 'mini_magick', '~> 4.8'
 gem 'kaminari'
 gem 'rails_admin'
+gem 'cloudinary'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
