@@ -20,8 +20,8 @@
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control', placeholder:'Email',aria_label:"Email"%>
         </div>
         <div class="col">
-          <%= f.label :birthday,'DOB',class:"form-label" %>
-          <%= f.date_field :birthday, class:'form-control', placeholder:'DoB',aria_label:"DoB"%>
+          <%= f.label :profile_img, class:'form-label' %>
+          <%= f.file_field :profile_img,class:'form-control', placeholder:'Profile Img',aria_label:"Profile Img" %>
         </div>
       </div>
       <div class="row g-3 mb-3">
