@@ -1,11 +1,13 @@
 <div class="container bg-white mb-4">
-    <div class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0" id="report-msg" role="alert">
+  <div class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0" id="report-msg" role="alert">
     <strong>Thanks</strong> Your response has been submitted.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <div class="row py-3 px-5 lh-base fs-5">
     <h3 class="mb-5"><%= @post.title %></h3>
-    <%= image_tag @post.header_img, alt: "text", class: 'img-thumbnail post-header-img mb-3' %>
+    <% if @post.header_img.attached? %>
+      <%= cl_image_tag @post.header_img.key, class: 'img-thumbnail post-header-img mb-3' %>
+    <% end %>
     <div class="lh-base post_body">
       <%= @post.body.html_safe%>
     </div>
@@ -33,11 +35,10 @@
   </div>
   <%= render 'comments/form' %>
 </div>
-
 <script>
-$("#reported-post-<%= @post.id %>").hide();
-$('#report-msg').hide()
-function show_report_form(post_id){
-  $(`#${post_id}`).show();
-}
+  $("#reported-post-<%= @post.id %>").hide();
+  $('#report-msg').hide()
+  function show_report_form(post_id){
+    $(`#${post_id}`).show();
+  }
 </script>

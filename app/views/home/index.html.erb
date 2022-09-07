@@ -6,7 +6,6 @@
       <p>You can also write your own blogs.</p>
     </div>
   </div>
-  <%= image_tag(current_user.profile_img) if current_user.profile_img.attached? %>
   <div class="row">
     <div class="col-12 mx-auto">
       <%= render @posts if !@posts.nil? %>
