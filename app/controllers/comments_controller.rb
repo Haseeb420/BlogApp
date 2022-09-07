@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   end
 
   def reply
-    @reply = @comment
     respond_to do |format|
       format.html { redirect_to post_path(@post) }
       format.js
@@ -33,13 +32,15 @@ class CommentsController < ApplicationController
   end
 
   def set_post
+    puts params[:post_id]
     @post = Post.find(params[:post_id])
   end
 
   def build_comment
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
-    @comment.commented_on = Date.today.to_s
+    puts @comment
+    p @comment
     @comment.save
     @comment
   end

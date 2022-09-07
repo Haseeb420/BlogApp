@@ -1,1 +1,2 @@
+$('#reply-textbox').val("");
 $("#comment-reply-<%= @comment.parent_id%>").append("<%=j render partial: 'comments/reply', locals: { reply: @comment } %>")

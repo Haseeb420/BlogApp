@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def show
     # @post = Post.includes(:comments).where(id:params[:id]).first
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comments).where(id:params[:id]).first
   end
 
   def new

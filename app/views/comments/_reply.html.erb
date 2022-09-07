@@ -4,7 +4,7 @@
       <%= commenter_name reply.user_id %>
     </div>
     <div class="card-body">
-      <%= reply.body %>
+      <%= reply.body.html_safe %>
     </div>
   </div>
 </div>
