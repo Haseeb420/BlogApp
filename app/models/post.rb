@@ -2,10 +2,8 @@ class Post < ApplicationRecord
   belongs_to :post_category
   has_one_attached :header_img
   belongs_to :user
-  has_many :comments
-  has_many :reported_posts
-  validates :title, presence: true
-  validates :title,:body,:header_img,presence:true
+  has_many :comments,dependent: :delete_all
+  has_many :reported_posts,dependent: :delete_all
 
   #scope are defined here
   scope :ordered, ->{ order(:published_date)}
