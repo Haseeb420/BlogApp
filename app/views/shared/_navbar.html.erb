@@ -19,7 +19,7 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <%= current_user.first_name %><%= image_tag current_user.profile_img, alt: "profile", class:"profile-img" %>
+                <%= current_user.first_name %><%= image_tag(current_user.profile_img, alt: "profile", class:"profile-img") if current_user.profile_img.attached?   %>
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">My Profile</a></li>
