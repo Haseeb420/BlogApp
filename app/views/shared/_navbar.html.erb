@@ -22,9 +22,8 @@
                 <%= current_user.first_name %><%= image_tag(current_user.profile_img, alt: "profile", class:"profile-img") if current_user.profile_img.attached?   %>
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">My Profile</a></li>
-                <li><a class="dropdown-item" href="#">Change Password</a></li>
-                <li><hr class="dropdown-divider"></li>
+                < <%= link_to "Profile", edit_user_registration_path, class:'dropdown-item' %>
+              <div class="dropdown-divider"></div>
                 <%= link_to "Logout", destroy_user_session_path,method: :delete,class:"dropdown-item"%>
               </ul>
             </li>
