@@ -2,11 +2,11 @@ class CreatePosts < ActiveRecord::Migration[5.2]
   def change
     create_table :posts do |t|
       t.string :title, null: false
-      t.text :body
-      t.date :published_date, default: -> { 'CURRENT_DATE' }
-      t.integer :likes, default: 0
+      t.text :body, null: false
+      t.date :published_date, default: -> { 'CURRENT_DATE' },null: false
+      t.integer :likes, default: 0,null: false
       t.references :user, index: true, null: false
-      t.references :post_category, foreign_key: true
+      t.references :post_category, foreign_key: true,null: false
 
       t.timestamps
     end

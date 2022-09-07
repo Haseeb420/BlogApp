@@ -2,8 +2,7 @@ class HomeController < ApplicationController
 
   def index
     if current_user.nil?
-      @posts = Post.all
-      @posts = Post.ordered.page(params[:page]).per(10)
+      @posts = Post.includes(:comments).page(params[:page]).per(10)
     else
       if current_user.moderator?
         redirect_to controller:"moderators", action: "index"

@@ -69,4 +69,5 @@ Rails.application.configure do
     password:             Rails.application.credentials.dig(:gmail_creds, :gmail_password),
     authentication:       'plain'
   }
+  config.active_storage.service = :cloudinary
 end
