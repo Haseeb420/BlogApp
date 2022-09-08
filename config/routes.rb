@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get 'home/about' => 'home#about', as: 'about_page'
   get 'post/recent-post' => 'posts#recent', as: 'recent_post'
 
-  get  'post/likes/:id' => 'posts#likes', as: 'post_likes'
   get 'comment/likes/:comment_id'=> 'comment_likes#index', as: 'add_comment_like'
   get 'post/likes/:post_id'=> 'post_likes#index', as: 'add_post_like'
   post '/posts/:post_id/comments-reply'=> 'comments#reply', as: 'comment_reply'
