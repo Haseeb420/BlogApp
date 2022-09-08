@@ -8,4 +8,4 @@ production:
   cloud_name: "blog-site-h"
   api_key: "735146786352999"
   api_secret: "yK74dJRJd9savEn2RT4FyeLnR-U"
-  secure:true
+  secure: true

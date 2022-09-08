@@ -17,13 +17,13 @@
           <%= link_to 'reply', new_post_comment_path(@post, parent_id: comment.id), remote: true, class: 'd-inline btn btn-light ' %>
         </div>
       </div>
-      <% if comment.replies.any? %>
-        <div class="row" id="comment-reply-<%= comment.id%>">
+      <div class="row" id="comment-reply-<%= comment.id%>">
+        <% if comment.replies.any? %>
           <% comment.replies.each do |reply| %>
             <%= render partial: 'comments/reply', locals: { reply: reply } %>
           <% end %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   <% end %>
   <div class="col-10 mx-auto">

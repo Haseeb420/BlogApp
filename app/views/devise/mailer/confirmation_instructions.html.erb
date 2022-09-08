@@ -1,3 +1,10 @@
-<p class="text-danger">Welcome <%= @email %>!</p>
-<p>You can confirm your account email through the link below:</p>
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<div class="header">
+  <p class="welcome">Welcome <%= @email %>!</p>
+</div>
+<div class="content">
+  <p>You can confirm your account email through the link below:</p>
+  <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+</div>
+<div class="footer" style="background:#000;">
+  <p style="color:white">cc @ Blogsite</p>
+</div>

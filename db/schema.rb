@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2022_09_06_034821) do
     t.string "title", null: false
     t.text "body", null: false
     t.date "published_date", default: -> { "CURRENT_DATE" }, null: false
-    t.integer "likes", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "post_category_id", null: false
     t.datetime "created_at", null: false
@@ -111,8 +110,8 @@ ActiveRecord::Schema.define(version: 2022_09_06_034821) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.integer "user_role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
