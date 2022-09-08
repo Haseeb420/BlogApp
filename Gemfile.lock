@@ -322,8 +322,6 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     temple (0.8.2)
-    terser (1.1.12)
-      execjs (>= 0.3.0, < 3)
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.11)
@@ -334,6 +332,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
@@ -388,9 +388,9 @@ DEPENDENCIES
   solargraph
   spring
   spring-watcher-listen (~> 2.0.0)
-  terser
   trix-rails
   turbolinks (~> 5)
+  uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
 
 RUBY VERSION
