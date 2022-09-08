@@ -2,7 +2,8 @@ class Post < ApplicationRecord
   belongs_to :post_category
   has_one_attached :header_img
   belongs_to :user
-  has_many :comments
+  has_many :comments,dependent: :delete_all
+  has_many :post_likes, dependent: :delete_all
 
 
 
