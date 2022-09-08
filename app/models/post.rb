@@ -2,9 +2,9 @@ class Post < ApplicationRecord
   belongs_to :post_category
   has_one_attached :header_img
   belongs_to :user
-  has_many :comments,dependent: :delete_all
-  has_many :reported_posts,dependent: :delete_all
   has_many :post_likes, dependent: :delete_all
+  has_many :reported_posts,dependent: :delete_all
+  has_many :comments,dependent: :delete_all
 
   #scope are defined here
   scope :ordered, ->{ order(:published_date)}
@@ -14,12 +14,6 @@ class Post < ApplicationRecord
 
   after_initialize :set_default_role, :if => :new_record?
 
-
-  def increse_likes
-    self.likes = likes + 1
-    save
-    likes
-  end
   private
 
   def set_default_role

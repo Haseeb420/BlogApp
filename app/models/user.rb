@@ -4,12 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,:confirmable,:lockable
   has_one_attached :profile_img
-  has_many :posts
-  has_many :comments
-  has_one :post_like
-  has_one :comment_like
-  has_many :reported_posts
-
+  has_one :comment_like, dependent: :delete
+  has_many :comments,dependent: :delete_all
+  has_one :post_like, dependent: :delete
+  has_many :reported_posts, dependent: :delete_all
+  has_many :posts, dependent: :delete_all
 
   #all relations are ends here
 

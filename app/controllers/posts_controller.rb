@@ -16,13 +16,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def likes
-    @post.increse_likes
-    respond_to do |format|
-      format.js
-    end
-  end
-
   def recent
     @posts = Post.recents_week_post
     respond_to do |format|
