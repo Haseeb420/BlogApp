@@ -10,6 +10,7 @@
       </div>
       <div class="card-footer">
         <div class="col-3 ms-auto">
+          <span id="comment-<%= comment.id %>-likes"><%= comment.comment_likes.count %></span>
           <%= link_to add_comment_like_path(comment_id: comment.id), remote:true do  %>
             <%= icon("fa-solid","thumbs-up") %>
           <% end %>

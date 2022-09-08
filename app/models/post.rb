@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments,dependent: :delete_all
   has_many :reported_posts,dependent: :delete_all
+  has_many :post_likes, dependent: :delete_all
 
   #scope are defined here
   scope :ordered, ->{ order(:published_date)}

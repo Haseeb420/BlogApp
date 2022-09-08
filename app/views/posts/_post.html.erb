@@ -17,17 +17,10 @@
         <div class="col-4">
           <p id="likes">
           </p>
-          <% if post.likes.nil? %>
-            <%= link_to post_likes_path(id:post.id),class:'text-dark text-decoration-none', remote:true do %>
+          <%= link_to add_post_like_path(post_id:post.id),class:'text-primary text-decoration-none', remote:true do %>
+            <p> <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span>
               <%= icon("fa-solid","thumbs-up", class: 'fa-shake') %>
-              <p><span  id="post_likes-<%= post.id %>"></span> </p>
-            <% end %>
-          <% else %>
-            <%= link_to post_likes_path(id:post.id),class:'text-primary text-decoration-none', remote:true do %>
-              <p> <span  id="post_likes-<%= post.id %>"><%= post.likes %></span>
-                <%= icon("fa-solid","thumbs-up", class: 'fa-shake') %>
-              </p>
-            <% end %>
+            </p>
           <% end %>
         </div>
         <div class="col-4">
