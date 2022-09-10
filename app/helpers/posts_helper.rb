@@ -1,12 +1,13 @@
 module PostsHelper
   def date_formatter(date)
-    date.strftime("%d-%m-%Y") if !date.nil?
+    date&.strftime('%d-%m-%Y')
   end
 
   def authur_name_by_id(id)
     user = User.find(id)
     "#{user.first_name} #{user.last_name}"
   end
+
   def post_counter_all
     Post.count
   end
@@ -20,14 +21,14 @@ module PostsHelper
   end
 
   def post_status_show(status)
-    if status=="approved"
-      "Approved"
+    if status == 'approved'
+      'Approved'
     else
-      "Not Approved"
+      'Not Approved'
     end
   end
+
   def counter_post_reported_last_week
     ReportedPost.count
   end
-
 end

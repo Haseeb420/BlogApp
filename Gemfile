@@ -21,20 +21,20 @@ gem 'terser'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'jquery-rails', '~> 4.5'
 gem 'jquery-turbolinks', '~> 2.1'
 gem 'trix-rails', require: 'trix'
-gem 'jquery-rails', '~> 4.5'
+gem 'turbolinks', '~> 5'
 # gem 'bootstrap', '~> 4.5'
 gem 'bootstrap', '~> 5.2'
 gem 'popper_js', '~> 2.11', '>= 2.11.5'
 # gem 'poper', '~> 0.2.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.8', '>= 4.8.1'
-gem "font-awesome-sass", "~> 6.2.0"
+gem 'font-awesome-sass', '~> 6.2.0'
+gem 'jbuilder', '~> 2.5'
 
-#for mails styling
+# for mails styling
 gem 'nokogiri'
 gem 'premailer-rails'
 
@@ -44,31 +44,33 @@ gem 'premailer-rails'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
-gem 'kaminari'
-gem 'rails_admin'
 gem 'cloudinary'
+gem 'kaminari'
+gem 'mini_magick', '~> 4.8'
+gem 'rails_admin'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'figaro', '~> 1.2'
-gem  'cancancan'
+# gem  'cancancan'
+gem 'pundit'
+gem 'rails_admin_pundit', github: 'sudosu/rails_admin_pundit'
 # gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'solargraph', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'solargraph', require: false
 end
 
 group :test do

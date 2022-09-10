@@ -3,9 +3,9 @@ class CreatePosts < ActiveRecord::Migration[5.2]
     create_table :posts do |t|
       t.string :title, null: false
       t.text :body, null: false
-      t.date :published_date, default: -> { 'CURRENT_DATE' },null: false
-      t.references :user, index: true, null: false
-      t.references :post_category, foreign_key: true,null: false
+      t.date :published_date, default: -> { 'CURRENT_DATE' }, null: false
+      t.references :user, index: true, null: false, on_delete: :cascade
+      t.references :post_category, foreign_key: true, null: false, on_delete: :cascade
 
       t.timestamps
     end

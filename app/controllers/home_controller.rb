@@ -1,16 +1,7 @@
 class HomeController < ApplicationController
-
+  before_action :set_posts
   def index
-    if current_user.nil?
-      @posts = Post.includes(:comments).where(status:'approved').ordered.page(params[:page]).per(10)
-    else
-      if current_user.moderator?
-        redirect_to controller:"moderators", action: "index"
-      else
-
-        @posts = Post.includes(:comments).where(status:'approved').ordered.page(params[:page]).per(10)
-      end
-    end
+    redirect_to controller: 'moderators', action: 'index' if !current_user.nil? && current_user.moderator?
   end
 
   def about
@@ -19,4 +10,7 @@ class HomeController < ApplicationController
 
   private
 
+  def set_posts
+    @posts = Post.includes(:comments).where(status: 'approved').ordered.page(params[:page]).per(10)
+  end
 end

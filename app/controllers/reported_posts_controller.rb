@@ -1,12 +1,9 @@
 class ReportedPostsController < ApplicationController
-  before_action :set_post, only:[:new, :create]
-  before_action :build_post_report, only:[ :create]
-  def index
-  end
+  before_action :set_post, only: %i[new create]
+  before_action :build_post_report, only: [:create]
+  def index; end
 
-  def new
-
-  end
+  def new; end
 
   def create
     respond_to do |format|
@@ -23,6 +20,7 @@ class ReportedPostsController < ApplicationController
   def reported_post_params
     params.require(:reported_post).permit(:reason)
   end
+
   def set_post
     @post = Post.find(params[:post_id])
   end

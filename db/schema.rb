@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_06_034821) do
+ActiveRecord::Schema.define(version: 2022_09_08_164751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,14 @@ ActiveRecord::Schema.define(version: 2022_09_06_034821) do
     t.index ["user_id"], name: "index_reported_posts_on_user_id"
   end
 
+  create_table "suggestions", force: :cascade do |t|
+    t.text "body"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_suggestions_on_post_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -127,4 +135,5 @@ ActiveRecord::Schema.define(version: 2022_09_06_034821) do
   add_foreign_key "posts", "post_categories"
   add_foreign_key "reported_posts", "posts"
   add_foreign_key "reported_posts", "users"
+  add_foreign_key "suggestions", "posts"
 end
