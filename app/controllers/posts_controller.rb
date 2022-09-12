@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.includes(:comments).where(user_id: current_user.id).limit(10).ordered
     @post = policy_scope(Post)
+    authorize @post
   end
 
   def show
