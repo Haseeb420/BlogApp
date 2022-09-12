@@ -18,7 +18,6 @@ class PostsController < ApplicationController
     # @post = Post.includes(:comments).where(id:params[:id]).first
     authorize @post
     @post = Post.includes(:comments).where(id: params[:id]).first
-
   end
 
   def new
@@ -66,7 +65,7 @@ class PostsController < ApplicationController
   def destroy
     authorize @post
     @post.destroy
-    redirect_to action: "index"
+    redirect_to action: 'index'
   end
 
   private
