@@ -46,4 +46,12 @@ RailsAdmin.config do |config|
     warden.authenticate! scope: :user
   end
   config.current_user_method(&:current_user)
+
+  config.model 'User' do
+    list do
+      field :first_name
+      field :last_name
+      field :email
+    end
+  end
 end
