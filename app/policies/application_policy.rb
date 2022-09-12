@@ -36,7 +36,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    true
   end
 
   class Scope

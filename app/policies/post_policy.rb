@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PostPolicy < ApplicationPolicy
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
@@ -13,37 +14,38 @@ class PostPolicy < ApplicationPolicy
   end
 
 
-  def new
+  def new?
     user.present?
     # return  true
   end
 
-  def show
+  def show?
     true
   end
 
-  def index
-    puts user.present
+  def index?
     user.present? || post.user
   end
 
-  def create
+  def create?
     user.admin? || user.present?
   end
 
-  def update
+  def update?
     user.present? || post.user
   end
 
-  def edit
+  def edit?
     user.present? || post.user
   end
 
-  def delete
-    post.user || user.admin? || user.moderator?
+  def destroy?
+    user==record.user || user.admin? || user.moderator?
   end
+
+
 
   def recent
-    post.user || user.admin? || user.moderator?
+    user==record.user || user.admin? || user.moderator?
   end
 end

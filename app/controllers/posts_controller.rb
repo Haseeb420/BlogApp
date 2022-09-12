@@ -9,15 +9,16 @@ class PostsController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @posts = Post.includes(:comments).where(user_id: current_user.id).limit(10).ordered
     @post = policy_scope(Post)
     authorize @post
+    @posts = Post.includes(:comments).where(user_id: current_user.id).limit(10).ordered
   end
 
   def show
     # @post = Post.includes(:comments).where(id:params[:id]).first
-    @post = Post.includes(:comments).where(id: params[:id]).first
     authorize @post
+    @post = Post.includes(:comments).where(id: params[:id]).first
+
   end
 
   def new
@@ -63,9 +64,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
     authorize @post
-    redirect_to post_path
+    @post.destroy
+    redirect_to action: "index"
   end
 
   private
