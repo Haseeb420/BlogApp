@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -11,7 +13,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :delete_all
   has_one_attached :profile_img
   # all relations are ends here
-
+  validates :profile_img, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+                                                  size_range: 1..(5.megabytes) }
   scope :recents_week_users, -> { where('created_at > ?', Time.zone.now - 7.days) }
 
   enum user_role: { user: 0, admin: 1, moderator: 2 }

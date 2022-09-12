@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   belongs_to :post_category
   has_one_attached :header_img
@@ -5,6 +7,7 @@ class Post < ApplicationRecord
   has_many :post_likes, dependent: :destroy
   has_many :reported_posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :suggestions, dependent: :destroy
 
   # scope are defined here
   scope :ordered, -> { order(:published_date) }

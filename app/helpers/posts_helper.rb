@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PostsHelper
   def date_formatter(date)
     date&.strftime('%d-%m-%Y')

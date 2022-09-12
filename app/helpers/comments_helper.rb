@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CommentsHelper
   def commenter_name(commenter_id)
     if current_user && (commenter_id == current_user.id)

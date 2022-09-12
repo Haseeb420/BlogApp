@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -55,6 +57,7 @@ gem 'rails_admin'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'figaro', '~> 1.2'
 # gem  'cancancan'
+gem 'activestorage-validator'
 gem 'pundit'
 gem 'rails_admin_pundit', github: 'sudosu/rails_admin_pundit'
 # gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'

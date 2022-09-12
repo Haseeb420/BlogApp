@@ -27,7 +27,7 @@
           <%= link_to 'Show Details', post_path(post),class:'btn btn-link ms-auto ' %>
           <% if post.user==current_user %>
             <%= link_to 'Edit', edit_post_path(post),class:'btn btn-info ms-auto ' %>
-            <%= link_to 'Delete', post_path(post),method: :delete,class:'btn btn-danger ms-auto ' %>
+            <%= link_to 'Delete', post_path(post),method: :delete,data: { confirm: 'Are you sure?' },class:'btn btn-danger ms-auto ' %>
           <% end %>
         </div>
       </div>

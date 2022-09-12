@@ -1,0 +1,15 @@
+$("#addSuggestion").modal('hide');
+<% if @notice %>
+
+  $("#seggestion-notice").show()
+  setTimeout(()=>{
+    $("#seggestion-notice").hide();
+  },3000);
+
+<%else%>
+  $("#seggestion-alert").show()
+
+  setTimeout(()=>{
+   $("#seggestion-alert").hide();
+   },3000);
+<%end%>

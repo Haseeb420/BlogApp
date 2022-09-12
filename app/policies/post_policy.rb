@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 class PostPolicy < ApplicationPolicy
+  attr_reader :current_user, :post
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      if user.admin?
+      if current_user.admin?
         scope.all
       else
         scope.where(stauts: 'approved')
@@ -10,8 +14,13 @@ class PostPolicy < ApplicationPolicy
     end
   end
 
+  def initialize(current_user, post)
+    @current_user = current_user
+    @post = post
+  end
+
   def new
-    user.present?
+    current_user.present?
     # return  true
   end
 
@@ -20,26 +29,26 @@ class PostPolicy < ApplicationPolicy
   end
 
   def index
-    user.present? || post.user
+    current_user.present? || post.user
   end
 
   def create
-    user.admin? || user.present?
+    current_user.admin? || current_user.present?
   end
 
   def update
-    user.present? || post.user
+    current_user.present? || post.user
   end
 
   def edit
-    user.present? || post.user
+    current_user.present? || post.user
   end
 
   def delete
-    post.user || user.admin? || user.moderator?
+    post.user || current_user.admin? || current_user.moderator?
   end
 
   def recent
-    post.user || user.admin? || user.moderator?
+    post.user || current_user.admin? || current_user.moderator?
   end
 end

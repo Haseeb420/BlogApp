@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :set_post_by_post_id, only: %i[new create reply destroy]
   before_action :build_comment, only: %i[reply create]

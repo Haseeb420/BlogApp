@@ -24,7 +24,7 @@
           <td><%= date_formatter post.published_date %></td>
           <td id="post-<%= post.id%>-status" ><%= post_status_show post.status %></td>
           <td>
-            <%= link_to "Details", root_path, class:"btn mx-auto btn-info" %>
+            <%= link_to "Details", post_details_path(post_id:post.id), class:"btn mx-auto btn-info" %>
             <%= link_to "Approved", post_approval_path(post_id:post.id),remote:true, class:"btn mx-auto btn-success" %>
           </td>
         </tr>

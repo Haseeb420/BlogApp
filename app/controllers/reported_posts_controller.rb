@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReportedPostsController < ApplicationController
   before_action :set_post, only: %i[new create]
   before_action :build_post_report, only: [:create]
