@@ -24,6 +24,7 @@ class CommentsController < ApplicationController
   def show; end
 
   def create
+    authorize @comment
     respond_to do |format|
       format.html { redirect_to post_path(@post) }
       format.js
