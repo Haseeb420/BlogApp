@@ -2,9 +2,8 @@
 
 class SuggestionsController < ApplicationController
   before_action :set_post_by_post_id
+  before_action :build_suggestion, only: [:create]
   def create
-    @suggestion = @post.suggestions.build(suggestion_params)
-    @suggestion.post = @post
     @notice = if @suggestion.save
                 'Suggestion added successfully'
               else
@@ -21,5 +20,9 @@ class SuggestionsController < ApplicationController
 
   def suggestion_params
     params.require(:suggestion).permit(:body)
+  end
+
+  def build_suggestion
+    @suggestion = @post.suggestions.build(suggestion_params)
   end
 end

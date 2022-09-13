@@ -24,9 +24,12 @@ class CommentsController < ApplicationController
   def show; end
 
   def create
-    respond_to do |format|
-      format.html { redirect_to post_path(@post) }
-      format.js
+    @comment.user_id = current_user.id
+    if @comment.save
+      respond_to do |format|
+        format.html { redirect_to post_path(@post) }
+        format.js
+      end
     end
   end
 
@@ -40,9 +43,6 @@ class CommentsController < ApplicationController
 
   def build_comment
     @comment = @post.comments.build(comment_params)
-    @comment.user_id = current_user.id
-    @comment.save
-    @comment
   end
 
   def delete_comments_post

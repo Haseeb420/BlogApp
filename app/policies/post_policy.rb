@@ -6,7 +6,7 @@ class PostPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      if current_user.admin?
+      if user.admin?
         scope.all
       else
         scope.where(stauts: 'approved')
@@ -14,13 +14,8 @@ class PostPolicy < ApplicationPolicy
     end
   end
 
-  def initialize(current_user, post)
-    @current_user = current_user
-    @post = post
-  end
-
   def new
-    current_user.present?
+    user.present?
     # return  true
   end
 
@@ -29,26 +24,26 @@ class PostPolicy < ApplicationPolicy
   end
 
   def index
-    current_user.present? || post.user
+    user.present? || post.user
   end
 
   def create
-    current_user.admin? || current_user.present?
+    user.admin? || user.present?
   end
 
   def update
-    current_user.present? || post.user
+    user.present? || post.user
   end
 
   def edit
-    current_user.present? || post.user
+    user.present? || post.user
   end
 
   def delete
-    post.user || current_user.admin? || current_user.moderator?
+    post.user || user.admin? || user.moderator?
   end
 
   def recent
-    post.user || current_user.admin? || current_user.moderator?
+    post.user || user.admin? || user.moderator?
   end
 end
