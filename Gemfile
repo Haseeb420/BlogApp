@@ -15,8 +15,8 @@ gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-# gem 'uglifier', '>= 1.3.0'
-gem 'terser'
+gem 'uglifier', '>= 1.3.0'
+# gem 'terser'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -27,10 +27,9 @@ gem 'jquery-rails', '~> 4.5'
 gem 'jquery-turbolinks', '~> 2.1'
 gem 'trix-rails', require: 'trix'
 gem 'turbolinks', '~> 5'
-# gem 'bootstrap', '~> 4.5'
 gem 'bootstrap', '~> 5.2'
 gem 'popper_js', '~> 2.11', '>= 2.11.5'
-# gem 'poper', '~> 0.2.3'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'font-awesome-sass', '~> 6.2.0'
@@ -47,10 +46,10 @@ gem 'premailer-rails'
 
 # Use ActiveStorage variant
 gem 'cloudinary'
-gem "shrine-cloudinary", "~> 1.1"
 gem 'kaminari'
 gem 'mini_magick', '~> 4.8'
 gem 'rails_admin'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

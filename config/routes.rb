@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :images
   root 'home#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     resources :reported_posts
     resources :suggestions
   end
+  resources :images, only: %i[show create]
   get 'home/index' => 'home#index', as: 'welcome_page'
   get 'home/about' => 'home#about', as: 'about_page'
   get 'post/recent-post' => 'posts#recent', as: 'recent_post'

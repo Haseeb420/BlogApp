@@ -2,10 +2,10 @@
 
 module PostLikesHelper
   def post_like_color(id)
-    if PostLike.where(user_id:id).exists?
-      "text-primary"
+    if PostLike.where(user_id: id).exists?
+      'text-primary'
     else
-      "text-secondary"
+      'text-secondary'
     end
   end
 end
