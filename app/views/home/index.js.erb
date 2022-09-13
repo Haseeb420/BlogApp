@@ -1,0 +1,12 @@
+<% if PostLike.where(user_id:@post.user_id).exists?%>
+$('#post_likes-<%= @post.id %>').text("<%= @post.post_likes.count%>")
+$('#post_likes-<%= @post.id %>').parent().css("color", "#0000ff");
+$('#like-link-<%= @post.id%>').css("color", "#0000ff");
+
+<%else%>
+$('#post_likes-<%= @post.id %>').text("<%= @post.post_likes.count%>")
+$('#post_likes-<%= @post.id %>').parent().css("color", "#0000ff");
+$('#like-link-<%= @post.id%>').css("color", "#000000");
+
+<%end%>
+

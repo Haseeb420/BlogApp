@@ -9,19 +9,15 @@ class PostLikesController < ApplicationController
 
   def index
     if user_exists?
-      PostLike.where('user_id=? and post_id=?', current_user.id, params[:post_id]).first.delete
+      delete_post_like
     else
-      @post_like = PostLike.new
-      @post_like.post_id = @post.id
-      @post_like.user_id = current_user.id
-      @post_like.save
+      add_like
     end
-
     @post
     @post_like = policy_scope(PostLike)
     respond_to do |format|
       # @post = Comment.find(params[:post_id]).likes.count
-      format.js
+      format.js {render 'home/index.js.erb'}
     end
   end
 
@@ -35,5 +31,16 @@ class PostLikesController < ApplicationController
 
   def user_exists?
     PostLike.where('user_id=? and post_id=?', current_user.id, params[:post_id]).exists?
+  end
+
+  def add_like
+    @post_like = PostLike.new
+    @post_like.post_id = @post.id
+    @post_like.user_id = current_user.id
+    @post_like.save
+  end
+
+  def delete_post_like
+    PostLike.where('user_id=? and post_id=?', current_user.id, params[:post_id]).first.delete
   end
 end

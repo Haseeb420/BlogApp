@@ -15,11 +15,10 @@
           <p> <strong>Created at:</strong> <%= date_formatter post.published_date %></p>
         </div>
         <div class="col-4">
-          <p id="likes">
-          </p>
-          <%= link_to add_post_like_path(post_id:post.id),class:'text-primary text-decoration-none', remote:true do %>
-            <p> <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span>
-              <%= icon("fa-solid","thumbs-up", class: 'fa-shake') %>
+          <%= icon("fa-regular","thumbs-up") %>
+          <%= link_to add_post_like_path(post_id:post.id), remote:true do %>
+            <p class="<%= post_like_color current_user %>"> <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span>
+              <span id="like-link-<%= post.id%>"><%= icon("fa-solid","thumbs-up") %></span>
             </p>
           <% end %>
         </div>

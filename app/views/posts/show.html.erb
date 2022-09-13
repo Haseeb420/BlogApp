@@ -3,6 +3,10 @@
     <strong>Thanks</strong> Your response has been submitted.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
+  <div class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0" id="login_error" role="alert">
+    <strong>Please</strong> SignIn before doing this action.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <div class="row py-3 px-5 lh-base fs-5">
     <h3 class="mb-5"><%= @post.title %></h3>
     <% if @post.header_img.attached? %>
@@ -37,8 +41,18 @@
 </div>
 <script>
   $("#reported-post-<%= @post.id %>").hide();
+  $("#login_error").hide();
   $('#report-msg').hide()
   function show_report_form(post_id){
-    $(`#${post_id}`).show();
+    <% if !current_user.nil?%>
+        $(`#${post_id}`).show();
+    <%else%>
+      $("#login_error").show();
+
+      setTimeout(() => {
+        $("#login_error").hide();
+
+      },3000);
+    <%end%>
   }
 </script>
