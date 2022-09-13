@@ -1,43 +1,37 @@
 # frozen_string_literal: true
 
 class CommentLikesController < ApplicationController
-  before_action :authenticate_user!
   # skip_before_action :authenticate_user!, only: [:show]
   before_action :set_comment, except: [:destory]
+  before_action :new_comment_like
   def index
-    if user_exists?
-      delete_user
+    if Comment.user_exists?
+      Comment.delete_user_comment_like
     else
-      new_comment_like
+      @comment_like.comment_id = @comment.id
+      @comment_like.user_id = current_user.id
+      @comment_like.save
     end
-    @comment
     respond_to do |format|
       format.js
     end
   end
 
   def destory
-    delete_user
+    Comment.delete_user_comment_like
   end
 
   private
+
+  def comment_like_params
+    params.require(:comment_like).permit(:post_id, :user_id)
+  end
 
   def set_comment
     @comment = Comment.find(params[:comment_id])
   end
 
-  def user_exists?
-    CommentLike.where('user_id=? and comment_id=?', current_user.id, params[:comment_id]).exists?
-  end
-
   def new_comment_like
     @comment_like = CommentLike.new
-    @comment_like.comment_id = @comment.id
-    @comment_like.user_id = current_user.id
-    @comment_like.save
-  end
-
-  def delete_user
-    CommentLike.where('user_id=? and comment_id=?', current_user.id, params[:comment_id]).first.delete
   end
 end

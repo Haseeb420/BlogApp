@@ -2,7 +2,6 @@
 
 class ModeratorsController < ApplicationController
   layout 'moderator_dashboard'
-  before_action :authenticate_user!
   before_action :user_not_authorized
   before_action :set_posts, only: %i[index recent_post]
   def index; end

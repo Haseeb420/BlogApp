@@ -41,9 +41,6 @@ class CommentsController < ApplicationController
 
   def build_comment
     @comment = @post.comments.build(comment_params)
-    @comment.user_id = current_user.id
-    @comment.save
-    @comment
   end
 
   def delete_comments_post

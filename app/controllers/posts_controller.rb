@@ -2,7 +2,6 @@
 
 # app/controllers/post_controller
 class PostsController < ApplicationController
-  before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [:show]
   before_action :set_post, except: %i[new create index]
   after_action :verify_authorized, except: :index
