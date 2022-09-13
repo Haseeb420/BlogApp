@@ -1,12 +1,16 @@
-<% if PostLike.where(user_id:@post.user_id).exists?%>
 $('#post_likes-<%= @post.id %>').text("<%= @post.post_likes.count%>")
-$('#post_likes-<%= @post.id %>').parent().css("color", "#0000ff");
-$('#like-link-<%= @post.id%>').css("color", "#0000ff");
+<% if PostLike.where(user_id:@post.user_id).exists?%>
+$('#post-like-btn-<%= @post.id %>').removeClass("bg-white");
+$('#post-like-btn-<%= @post.id %>').addClass("bg-primary");
+$('#post-like-btn-<%= @post.id %>').removeClass("text-secoundary");
+$('#post-like-btn-<%= @post.id %>').addClass("text-white");
+
 
 <%else%>
-$('#post_likes-<%= @post.id %>').text("<%= @post.post_likes.count%>")
-$('#post_likes-<%= @post.id %>').parent().css("color", "#0000ff");
-$('#like-link-<%= @post.id%>').css("color", "#000000");
+$('#post-like-btn-<%= @post.id %>').removeClass("bg-primary");
+$('#post-like-btn-<%= @post.id %>').addClass("bg-white");
+$('#post-like-btn-<%= @post.id %>').removeClass("text-white");
+$('#post-like-btn-<%= @post.id %>').addClass("text-secoundary");
 
 <%end%>
 

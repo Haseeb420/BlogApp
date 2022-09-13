@@ -8,6 +8,7 @@ class Comment < ApplicationRecord
   has_many    :replies, class_name: 'Comment', foreign_key: :parent_id, dependent: :destroy
   has_many :comment_likes, dependent: :delete_all
 
+  validates :body, presence: true
   # methods related to comment model are defined here
   def user_exists?
     CommentLike.where('user_id=? and comment_id=?', current_user.id, params[:comment_id]).exists?

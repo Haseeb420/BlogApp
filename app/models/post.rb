@@ -9,7 +9,8 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :suggestions, dependent: :destroy
 
-  validates :title, presence: :true, length: { minimum: 3, maximum: 200 }
+  validates :title, presence: true, length: { minimum: 3, maximum: 200 }
+  validates :body, presence: true, length: { maximum: 50 }
   validates :header_img, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'],
                                                  size_range: 1..(5.megabytes) }
 

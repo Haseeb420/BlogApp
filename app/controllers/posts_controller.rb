@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    # @post = Post.includes(:comments).where(id:params[:id]).first
     authorize @post
     @post = Post.includes(:comments).where(id: params[:id]).first
   end
@@ -34,7 +33,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_param)
-    # @post.published_date = Date.today.to_s
     @post.user_id = current_user.id
 
     respond_to do |format|
@@ -75,9 +73,8 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def delete_post_comment
-    Comment.delete_all.where(post_id: @post.id)
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = 'Post not found'
+    redirect_to root_path
   end
 end

@@ -19,9 +19,7 @@
       </div>
       <div class="row" id="comment-reply-<%= comment.id%>">
         <% if comment.replies.any? %>
-          <% comment.replies.each do |reply| %>
-            <%= render partial: 'comments/reply', locals: { reply: reply } %>
-          <% end %>
+          <%= render comment.replies %>
         <% end %>
       </div>
     </div>

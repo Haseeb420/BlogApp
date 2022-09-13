@@ -47,6 +47,7 @@ gem 'premailer-rails'
 
 # Use ActiveStorage variant
 gem 'cloudinary'
+gem "shrine-cloudinary", "~> 1.1"
 gem 'kaminari'
 gem 'mini_magick', '~> 4.8'
 gem 'rails_admin'

@@ -14,14 +14,17 @@
         <div class="col-4">
           <p> <strong>Created at:</strong> <%= date_formatter post.published_date %></p>
         </div>
-        <div class="col-4">
-          <%= icon("fa-regular","thumbs-up") %>
-          <%= link_to add_post_like_path(post_id:post.id), remote:true do %>
-            <p class="<%= post_like_color current_user %>"> <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span>
-              <span id="like-link-<%= post.id%>"><%= icon("fa-solid","thumbs-up") %></span>
+        <% if PostLike.where(user_id:post.user_id).exists? %>
+          <%= link_to add_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-block bg-primary text-white col-2 mx-auto rounded border text-center", remote:true do %>
+            <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
             </p>
           <% end %>
-        </div>
+        <%else%>
+          <%= link_to add_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-block bg-white text-secoundary col-2 mx-auto rounded border text-center", remote:true do %>
+            <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
+            </p>
+          <% end %>
+        <% end %>
         <div class="col-4">
           <%= link_to 'Show Details', post_path(post),class:'btn btn-link ms-auto ' %>
           <% if post.user==current_user %>

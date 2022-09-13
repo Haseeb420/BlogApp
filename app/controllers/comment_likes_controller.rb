@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CommentLikesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [:show]
   before_action :set_comment, except: [:destory]
   before_action :new_comment_like
   def index

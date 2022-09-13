@@ -27,5 +27,8 @@ Rails.application.routes.draw do
   get 'moderators/suugestions/' => 'moderators#suggestions', as: 'all_suggestions'
   get 'moderators/delete-suggestions/:id' => 'moderators#delete_suggestions', as: 'delete_suggestions'
 
+  # scope '/moderator', as: 'moderator', module: :moderator do
+  #   resources :posts, :reported_posts, :suggestions
+  # end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

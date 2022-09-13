@@ -4,13 +4,11 @@ class CommentsController < ApplicationController
   before_action :set_post_by_post_id, only: %i[new create reply destroy]
   before_action :build_comment, only: %i[reply create]
   before_action :delete_comments_post, only: [:destroy]
-  after_action :verify_authorized, except: :index
-  after_action :verify_policy_scoped, only: :index
-
   def index; end
 
   def reply
-    authorize @comment
+    @comment.user = current_user
+    @comment.save
     respond_to do |format|
       format.html { redirect_to post_path(@post) }
       format.js
@@ -24,7 +22,8 @@ class CommentsController < ApplicationController
   def show; end
 
   def create
-    authorize @comment
+    @comment.user = current_user
+    @comment.save
     respond_to do |format|
       format.html { redirect_to post_path(@post) }
       format.js

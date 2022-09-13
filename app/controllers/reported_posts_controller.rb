@@ -8,12 +8,11 @@ class ReportedPostsController < ApplicationController
   def new; end
 
   def create
-    respond_to do |format|
-      format.js
-    end
-    respond_to do |format|
-      # @comment = Comment.find(params[:comment_id]).likes.count
-      format.js
+    @report.user = current_user
+    if @report.save
+      respond_to do |format|
+        format.js { render 'show.js.erb' }
+      end
     end
   end
 
@@ -29,8 +28,5 @@ class ReportedPostsController < ApplicationController
 
   def build_post_report
     @report = @post.reported_posts.build(reported_post_params)
-    @report.user = current_user
-    @report.save
-    @report
   end
 end
