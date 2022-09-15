@@ -10,12 +10,12 @@ class PostsController < ApplicationController
   def index
     @post = policy_scope(Post)
     authorize @post
-    @posts = Post.includes(:comments).where(user_id: current_user.id).limit(10).ordered
+    # @posts = Post.includes(:comments).where(user_id: current_user.id).limit(10).ordered
+    @posts = current_user.user_all_post
   end
 
   def show
     authorize @post
-    @post = Post.includes(:comments).where(id: params[:id]).first
   end
 
   def new
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 
   def recent
     @posts = Post.recents_week_post
-    authorize @post
+    authorize @posts
     respond_to do |format|
       format.js
     end
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       authorize @post
       if @post.save
-        flash.now[:notice] = 'Post Created Succesfully'
+        flash.now[:notice] = "Post Created Succesfully"
         format.html { redirect_to post_url(@post) }
         # format.js { render :show }
       else
@@ -55,26 +55,25 @@ class PostsController < ApplicationController
     if @post.update(post_param)
       redirect_to @post
     else
-      render 'edit'
+      render "edit"
     end
   end
 
   def destroy
     authorize @post
     @post.destroy
-    redirect_to action: 'index'
+    redirect_to action: "index"
   end
 
   private
+    def post_param
+      params.require(:post).permit(:title, :body, :header_img, :post_category_id)
+    end
 
-  def post_param
-    params.require(:post).permit(:title, :body, :header_img, :post_category_id)
-  end
-
-  def set_post
-    @post = Post.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    flash[:alert] = 'Post not found'
-    redirect_to root_path
-  end
+    def set_post
+      @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "Post not found"
+      redirect_to root_path
+    end
 end

@@ -14,6 +14,12 @@
           <%= link_to add_comment_like_path(comment_id: comment.id), remote:true do  %>
             <%= icon("fa-solid","thumbs-up") %>
           <% end %>
+          <button>
+
+          </button>
+          <% if sign_in? %>
+            
+          <% end %>
           <%= link_to 'reply', new_post_comment_path(@post, parent_id: comment.id), remote: true, class: 'd-inline btn btn-light ' %>
         </div>
       </div>
@@ -28,3 +34,17 @@
     <div id="reply-form-<%= comment.id %>"></div>
   </div>
 </div>
+<script>
+  function show_reply_form(post_id){
+    <% if !current_user.nil?%>
+        $(`#${post_id}`).show();
+    <%else%>
+      $("#login_error").show();
+
+      setTimeout(() => {
+        $("#login_error").hide();
+
+      },3000);
+    <%end%>
+  }
+</script>

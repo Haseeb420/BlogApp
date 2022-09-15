@@ -9,11 +9,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 PostCategory.create(
-  category_name: 'Technology'
+  category_name: "Technology"
 )
 PostCategory.create(
-  category_name: 'Daily Life'
+  category_name: "Daily Life"
 )
 PostCategory.create(
-  category_name: 'Sports'
+  category_name: "Sports"
 )

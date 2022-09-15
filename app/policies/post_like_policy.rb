@@ -8,7 +8,7 @@ class PostLikePolicy < ApplicationPolicy
     end
   end
 
-  def index
+  def show?
     user.present?
   end
 end

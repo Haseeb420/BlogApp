@@ -5,32 +5,37 @@
         <div class="col-2 post-card-img">
           <%= image_tag (post.header_img if ! post.header_img.nil?), alt: "header_img" %>
         </div>
-        <div class="col-10 ps-5">
-          <h5 class="card-title"><%= post.title.truncate(200) %></h5>
-          <p class=" text-muted fs-6"><%= post.body.truncate(200).html_safe %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <p> <strong>Created at:</strong> <%= date_formatter post.published_date %></p>
-        </div>
-        <% if PostLike.where(user_id:post.user_id).exists? %>
-          <%= link_to add_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-block bg-primary text-white col-2 mx-auto rounded border text-center", remote:true do %>
-            <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
-            </p>
-          <% end %>
-        <%else%>
-          <%= link_to add_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-block bg-white text-secoundary col-2 mx-auto rounded border text-center", remote:true do %>
-            <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
-            </p>
-          <% end %>
-        <% end %>
-        <div class="col-4">
-          <%= link_to 'Show Details', post_path(post),class:'btn btn-link ms-auto ' %>
-          <% if post.user==current_user %>
-            <%= link_to 'Edit', edit_post_path(post),class:'btn btn-info ms-auto ' %>
-            <%= link_to 'Delete', post_path(post),method: :delete,data: { confirm: 'Are you sure?' },class:'btn btn-danger ms-auto ' %>
-          <% end %>
+        <div class="col-10 ps-5 position-relative">
+          <div class="row">
+            <h5 class="card-title"><%= post.title.truncate(200) %></h5>
+            <p class=" text-muted fs-6"><%= post.body.truncate(200).html_safe %></p>
+          </div>
+          <div class="row position-absolute bottom-0">
+            <div class="row">
+              <hr>
+              <div class="col-3">
+                <p> <strong>Created at:</strong> <%= date_formatter post.published_date %></p>
+              </div>
+              <% if PostLike.where(user_id:post.user_id).exists? %>
+                <%= link_to post_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-inline-block bg-primary text-white col-4 rounded border text-center", remote:true do %>
+                  <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
+                  </p>
+                <% end %>
+              <%else%>
+                <%= link_to post_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-inline-block bg-white text-secoundary col-4 rounded border text-center", remote:true do %>
+                  <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
+                  </p>
+                <% end %>
+              <% end %>
+              <div class="col-4">
+                <%= link_to 'Show Details', post_path(post),class:'btn btn-link ms-auto ' %>
+                <% if post.user==current_user %>
+                  <%= link_to 'Edit', edit_post_path(post),class:'btn btn-info ms-auto ' %>
+                  <%= link_to 'Delete', post_path(post),method: :delete,data: { confirm: 'Are you sure?' },class:'btn btn-danger ms-auto ' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

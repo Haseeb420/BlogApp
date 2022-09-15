@@ -33,17 +33,16 @@ class CommentsController < ApplicationController
   def destroy; end
 
   private
+    def comment_params
+      params.require(:comment).permit(:body, :parent_id)
+    end
 
-  def comment_params
-    params.require(:comment).permit(:body, :parent_id)
-  end
+    def build_comment
+      @comment = @post.comments.build(comment_params)
+    end
 
-  def build_comment
-    @comment = @post.comments.build(comment_params)
-  end
-
-  def delete_comments_post
-    @comments = @post.comments.find(params[:id])
-    @comment.destroy
-  end
+    def delete_comments_post
+      @comments = @post.comments.find(params[:id])
+      @comment.destroy
+    end
 end

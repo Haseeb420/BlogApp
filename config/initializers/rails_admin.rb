@@ -47,7 +47,7 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
 
-  config.model 'User' do
+  config.model "User" do
     list do
       field :id
       field :first_name

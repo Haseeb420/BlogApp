@@ -19,4 +19,3 @@
 //= require trix
 //= require_tree .
 //= require turbolinks
-//= require trix_attachments

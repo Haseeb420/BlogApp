@@ -1,59 +1,38 @@
-do ->
-  HOST = "https://api.cloudinary.com/v1_1/blog-site-h"
-  CLOUDINARY_UPLOAD_PRESET = "mpdzbgxl"
-  # POST https://api.cloudinary.com/v1_1/demo/image/upload
-  uploadFileAttachment = (attachment) ->
+$(document).ready ->
 
-    setProgress = (progress) ->
-      attachment.setUploadProgress progress
-      return
-
-    setAttributes = (attributes) ->
-      attachment.setAttributes attributes
-      return
-
-    uploadFile attachment.file, setProgress, setAttributes
-    return
-
-  uploadFile = (file, progressCallback, successCallback) ->
-    key = createStorageKey(file)
-    formData = createFormData(key, file)
+  uploadAttachment = (attachment) ->
+    csrfToken = $('meta[name="csrf-token"]').attr('content')
+    file = attachment.file
+    form = new FormData
+    endpoint = '/images.json'
+    form.append 'Content-Type', file.type
+    form.append 'image[attachment]', file
     xhr = new XMLHttpRequest
-    xhr.open 'POST', HOST, true
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.upload.addEventListener 'progress', (event) ->
+    xhr.open 'POST', endpoint, true
+    xhr.setRequestHeader 'X-CSRF-Token', Rails.csrfToken()
+
+    xhr.upload.onprogress = (event) ->
       progress = event.loaded / event.total * 100
-      progressCallback progress
+      attachment.setUploadProgress progress
+
+    xhr.onload = ->
+      if @status >= 200 and @status < 300
+        data = JSON.parse(@responseText)
+        return attachment.setAttributes(
+          url: data.attachment_url
+          href: data.attachment_url)
       return
-    xhr.addEventListener 'load', (event) ->
-      if xhr.status == 204
-        attributes =
-          url: HOST + key
-          href: HOST + key + '?content-disposition=attachment'
-        successCallback attributes
-      return
-    xhr.send formData
-    return
 
-  createStorageKey = (file) ->
-    date = new Date
-    day = date.toISOString().slice(0, 10)
-    name = date.getTime() + '-' + file.name
-    [
-      'tmp'
-      day
-      name
-    ].join '/'
+    xhr.send form
 
-  createFormData = (key, file) ->
-    data = new FormData
-    data.append 'key', key
-    data.append 'Content-Type', file.type
-    data.append 'file', file
-    data
-
-  addEventListener 'trix-attachment-add', (event) ->
-    if event.attachment.file
-      uploadFileAttachment event.attachment
+  Trix.config.attachments.preview.caption =
+    name: false
+    size: false
+  document.addEventListener 'trix-attachment-add', (event) ->
+    attachment = event.attachment
+    if attachment.file
+      return uploadAttachment(attachment)
     return
   return
+
+

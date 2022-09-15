@@ -7,7 +7,7 @@ class PostPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
-        scope.where(stauts: 'approved')
+        scope.where(stauts: "approved")
       end
     end
   end
@@ -34,7 +34,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.present? || post.user
+    user.present? && user == record.user
   end
 
   def destroy?

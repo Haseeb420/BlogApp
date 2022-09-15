@@ -11,22 +11,21 @@ class ReportedPostsController < ApplicationController
     @report.user = current_user
     if @report.save
       respond_to do |format|
-        format.js { render 'show.js.erb' }
+        format.js { render "show.js.erb" }
       end
     end
   end
 
   private
+    def reported_post_params
+      params.require(:reported_post).permit(:reason)
+    end
 
-  def reported_post_params
-    params.require(:reported_post).permit(:reason)
-  end
+    def set_post
+      @post = Post.find(params[:post_id])
+    end
 
-  def set_post
-    @post = Post.find(params[:post_id])
-  end
-
-  def build_post_report
-    @report = @post.reported_posts.build(reported_post_params)
-  end
+    def build_post_report
+      @report = @post.reported_posts.build(reported_post_params)
+    end
 end
