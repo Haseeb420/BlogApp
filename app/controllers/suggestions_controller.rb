@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class SuggestionsController < ApplicationController
-  before_action :set_post_by_post_id
   before_action :build_suggestion, only: [:create]
-
+  before_action :set_post_post_id, except: :index
   def index
+    @suggestions = Suggestion.all
+    render layout: "moderator_dashboard"
   end
+
   def create
     @notice = if @suggestion.save
       "Suggestion added successfully"

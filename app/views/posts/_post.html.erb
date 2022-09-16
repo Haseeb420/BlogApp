@@ -1,4 +1,10 @@
 <div class="row">
+  <div class="post_like_error position-fixed mt-5 top-0 end-0 ">
+    <div class="alert alert-danger col-3 ms-auto alert-dismissible fade show" role="alert">
+      <strong>Please Login to like  this post.  </strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
   <div class="card post mb-3 col-11 mx-auto">
     <div class="card-body px-0">
       <div class="row p-0">
@@ -16,16 +22,23 @@
               <div class="col-3">
                 <p> <strong>Created at:</strong> <%= date_formatter post.published_date %></p>
               </div>
-              <% if PostLike.where(user_id:post.user_id).exists? %>
-                <%= link_to post_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-inline-block bg-primary text-white col-4 rounded border text-center", remote:true do %>
+              <% if !current_user.nil? %>
+                <% if PostLike.where(user_id:post.user_id).exists? %>
+                  <%= link_to post_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-inline-block bg-primary text-white col-4 rounded border text-center", remote:true do %>
+                    <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
+                    </p>
+                  <% end %>
+                <%else%>
+                  <%= link_to post_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-inline-block bg-white text-secoundary col-4 rounded border text-center", remote:true do %>
+                    <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
+                    </p>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <button  class="d-inline-block bg-white text-secoundary col-4 rounded border text-center"onclick="show_post_like_error(<%= post.id%>)">
                   <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
                   </p>
-                <% end %>
-              <%else%>
-                <%= link_to post_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-inline-block bg-white text-secoundary col-4 rounded border text-center", remote:true do %>
-                  <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
-                  </p>
-                <% end %>
+                </button>
               <% end %>
               <div class="col-4">
                 <%= link_to 'Show Details', post_path(post),class:'btn btn-link ms-auto ' %>
@@ -41,3 +54,12 @@
     </div>
   </div>
 </div>
+<script>
+  $(".post_like_error").hide();
+  function show_post_like_error(){
+    $(".post_like_error").show();
+    setTimeout(()=>{
+       $(".post_like_error").hide();
+    },3000)
+  }
+</script>

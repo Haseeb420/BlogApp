@@ -41,7 +41,15 @@ class PostPolicy < ApplicationPolicy
     user == record.user || user.admin? || user.moderator?
   end
 
-  def recent
-    user == record.user || user.admin? || user.moderator?
+  def recent?
+    user.moderator?
+  end
+
+  def post_detail?
+    user.moderator?
+  end
+
+  def post_approval?
+    user.moderator?
   end
 end

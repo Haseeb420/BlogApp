@@ -3,19 +3,32 @@
 # app/controllers/post_controller
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
-  before_action :set_post, except: %i[new create index]
+  before_action :set_post, except: %i[new create index recent]
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
   def index
     @post = policy_scope(Post)
     authorize @post
-    # @posts = Post.includes(:comments).where(user_id: current_user.id).limit(10).ordered
     @posts = current_user.user_all_post
   end
 
   def show
     authorize @post
+  end
+
+  def post_approval
+    authorize @post
+    @post.status = "approved"
+    @post.save
+    respond_to do |format|
+      format.js { "" }
+    end
+  end
+
+  def post_detail
+    authorize @post
+    render layout: "moderator_dashboard"
   end
 
   def new
@@ -27,6 +40,7 @@ class PostsController < ApplicationController
     @posts = Post.recents_week_post
     authorize @posts
     respond_to do |format|
+      format.html { render layout: "moderator_dashboard" }
       format.js
     end
   end
@@ -40,7 +54,6 @@ class PostsController < ApplicationController
       if @post.save
         flash.now[:notice] = "Post Created Succesfully"
         format.html { redirect_to post_url(@post) }
-        # format.js { render :show }
       else
         format.html { render :new, status: :unprocessable_entity }
       end

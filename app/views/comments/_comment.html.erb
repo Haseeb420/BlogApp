@@ -1,5 +1,13 @@
 <div class="row">
   <%# <div class="col-12"> %>
+  <div class="alert alert-warning alert-dismissible fade show comment-like-error col-3 position-fixed top-0 mt-5 end-0" role="alert">
+    <strong>Please </strong> Login to like the comment.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div class="alert alert-warning alert-dismissible fade show comment-reply-error col-3 position-fixed top-0 mt-5 end-0" role="alert">
+    <strong>Please </strong> Login to reply on comment.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <% unless comment.parent_id || !comment.persisted? %>
     <div class="card mb-2 col-12">
       <div class="card-header">
@@ -9,32 +17,20 @@
         <%= comment.body.html_safe %>
       </div>
       <div class="card-footer">
-        <div class="col-3 ms-auto">
-          <span id="comment-<%= comment.id %>-likes"><%= comment.comment_likes.count %></span>
-          <%= link_to add_comment_like_path(comment_id: comment.id), remote:true do  %>
-            <%= icon("fa-solid","thumbs-up") %>
-          <% end %>
-          <button>
-
-          </button>
-          <% if sign_in? %>
-            
-          <% end %>
-          <%= link_to 'reply', new_post_comment_path(@post, parent_id: comment.id), remote: true, class: 'd-inline btn btn-light ' %>
-        </div>
+        <%= render partial:'comments/like_btn',locals:{comment: comment} %>
       </div>
-      <div class="row" id="comment-reply-<%= comment.id%>">
-        <% if comment.replies.any? %>
-          <%= render comment.replies %>
-        <% end %>
+      <div class="row" id="comment-reply-<%= comment.id %>">
+        <%= render comment.replies %>
       </div>
     </div>
   <% end %>
-  <div class="col-10 mx-auto">
+  <div class="col-10 mx-auto comment-reply-<%= comment.id%>-form">
     <div id="reply-form-<%= comment.id %>"></div>
   </div>
 </div>
 <script>
+  $(".comment-like-error").hide();
+  $(".comment-reply-error").hide();
   function show_reply_form(post_id){
     <% if !current_user.nil?%>
         $(`#${post_id}`).show();
@@ -47,4 +43,16 @@
       },3000);
     <%end%>
   }
+  $(".comment-like-btn").click(()=>{
+    $(".comment-like-error").show();
+    setTimeout(() => {
+        $(".comment-like-error").hide();
+      },3000);
+  });
+  $(".reply-btn").click(()=>{
+      $(".comment-reply-error").show();
+      setTimeout(() => {
+        $(".comment-reply-error").hide();
+      },3000);
+  });
 </script>

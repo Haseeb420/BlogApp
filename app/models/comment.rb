@@ -9,4 +9,19 @@ class Comment < ApplicationRecord
   has_many    :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
 
   validates :body, presence: true
+
+  def user_comment_like_exists?(user_id)
+    comment_likes.where("user_id=?", user_id).exists?
+  end
+
+  def delete_user_comment_like(user_id)
+    comment_likes.where("user_id=?", user_id).first.delete
+  end
+
+  def add_user_comment_like(user_id)
+    @comment_like = comment_likes.build
+    @comment_like.user_id = user_id
+    @comment_like.save
+    @comment_like
+  end
 end

@@ -1,5 +1,4 @@
 $(document).ready ->
-
   uploadAttachment = (attachment) ->
     csrfToken = $('meta[name="csrf-token"]').attr('content')
     file = attachment.file
@@ -34,5 +33,7 @@ $(document).ready ->
       return uploadAttachment(attachment)
     return
   return
+
+
 
 

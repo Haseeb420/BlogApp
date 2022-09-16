@@ -21,9 +21,22 @@ class Post < ApplicationRecord
   scope :ordered, -> { order(published_date: :desc) }
   scope :recents_week_post, -> { where("created_at > ?", Time.zone.now - 7.days).order(published_date: :desc) }
   scope :all_posts, -> { includes(:comments).where(status: "approved").order(published_date: :desc) }
-
-
   after_initialize :set_default_role, if: :new_record?
+
+  def user_post_like_exists?(user_id)
+    post_likes.where(user_id: user_id).exists?
+  end
+
+  def delete_user_post_like(user_id)
+    post_likes.where(user_id: user_id).first.delete
+  end
+
+  def add_post_like(user_id)
+    @post_like = post_likes.build
+    @post_like.user_id = user_id
+    @post_like.save
+    @post_like
+  end
 
   private
     def set_default_role

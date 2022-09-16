@@ -27,6 +27,10 @@
           </div>
           <div class="col">
             <%= f.label :profile_img, class:'form-label' %>
+            <% if f.object.profile_img.attached? %>
+              <span><strong>Img File Name:</strong> <%= f.object.profile_img.blob.filename.to_s  %>. To change, choose different file below:</span>
+            <% end %>
+            <%= f.hidden_field :profile_img , value: f.object.profile_img.signed_id if f.object.profile_img.attached? %>
             <%= f.file_field :profile_img,class:'form-control', placeholder:'Profile Img',aria_label:"Profile Img" %>
           </div>
         </div>
