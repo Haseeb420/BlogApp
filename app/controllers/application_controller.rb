@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
       flash.now[:alert] = "You are not authorized to perform this action."
       redirect_to(request.referer || root_path)
     end
-    # def set_action_type
-    #   case params[:action]
-    # end
+  # def set_action_type
+  #   case params[:action]
+  # end
 end
