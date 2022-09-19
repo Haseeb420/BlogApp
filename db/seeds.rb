@@ -17,3 +17,30 @@ PostCategory.create(
 PostCategory.create(
   category_name: "Sports"
 )
+user = User.new(
+  first_name:'admin',
+  last_name:'admin',
+  email:'admin@blogsite.com',
+  profile_img:File.open(Rails.root.join('public/assets/images/profile_img.jpeg')),
+  password:'admin123',
+  password_confirmation:'admin123',
+  confirmed_at: Time.now.getutc,
+  user_role:"admin"
+)
+user.profile_img.attach(io: File.open(Rails.root.join('public/assets/images/profile_img.jpeg')),
+                  filename: 'profile_img.jpeg')
+user.save!
+user = User.new(
+  first_name:'moderator',
+  last_name:'moderator',
+  email:'moderator@blogsite.com',
+  profile_img:File.open(Rails.root.join('public/assets/images/profile_img.jpeg')),
+  password:'moderator123',
+  password_confirmation:'moderator123',
+  confirmed_at: Time.now.getutc,
+  user_role:"moderator"
+)
+
+user.profile_img.attach(io: File.open(Rails.root.join('public/assets/images/profile_img.jpeg')),
+                  filename: 'profile_img.jpeg')
+user.save!
