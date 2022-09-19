@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require Rails.root.join('lib', 'rails_admin', 'rails_admin_approve_user.rb')
+
+require Rails.root.join("lib", "rails_admin", "rails_admin_approve_user.rb")
 RailsAdmin.config do |config|
   ### Popular gems integration
   ## == Devise ==

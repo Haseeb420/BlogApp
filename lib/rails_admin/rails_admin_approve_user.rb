@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RailsAdmin
   module Config
     module Actions
@@ -18,7 +20,7 @@ module RailsAdmin
           User
         end
         register_instance_option :link_icon do
-          'icon-user'
+          "icon-user"
         end
 
         register_instance_option :controller do

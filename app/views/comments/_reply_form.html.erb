@@ -5,7 +5,7 @@
         <%= f.hidden_field :parent_id %>
         <div class="form-group mb-3">
           <%= f.label 'Reply' %>
-          <%= f.trix_editor :body, class: 'form-control',id:'reply-textbox' %>
+          <%= f.trix_editor :body, class: 'form-control', autofocus: true,id:'reply-textbox'%>
         </div>
         <%= f.submit 'Reply', class: 'btn btn-primary' %>
         <%= link_to 'Cancel', post_path(@post), class: 'btn btn-secondary' %>

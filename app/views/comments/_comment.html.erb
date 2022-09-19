@@ -1,4 +1,4 @@
-<div class="row mb-2 p-3">
+<div class="row bg-white mb-2 p-3">
   <%= render 'comments/alerts' %>
   <% unless comment.parent_id || !comment.persisted? %>
     <div class="card mb-2 col-12">
@@ -18,7 +18,7 @@
       <% end %>
     </div>
   <% end %>
-  <div class="col-10 mx-auto comment-reply-<%= comment.id%>-form">
+  <div class="col-12 mx-auto comment-reply-<%= comment.id%>-form">
     <div id="reply-form-<%= comment.id %>"></div>
   </div>
 </div>

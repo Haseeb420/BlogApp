@@ -1,2 +1,31 @@
-<h1>ReportedPost#index</h1>
-<p>Find me in app/views/reported_post/index.html.erb</p>
+<div class="row px-3 bg-white">
+  <h2 class="mb-3 p-4">Reported Posts </h2>
+  <hr>
+</div>
+<div class="row bg-white px-3">
+  <h3>Recent Reported Posts</h3>
+  <hr>
+  <table class="table text-center table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Suggestion#</th>
+        <th  scope="col">Sugesstion Text Title</th>
+        <th scope="col">Post Title</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="post_data">
+      <% @reports.each do |report| %>
+        <tr>
+          <th scope="row"><%= report.id %>
+          </th>
+          <td><%= report.reason %></td>
+          <td id="report-<%= report.id%>-status" > <%= get_post_title_id(report.post_id) %></td>
+          <td>
+            <%= link_to "Delete", reported_post_path(post_id: report.post_id,id:report.id),method: :delete, class:"btn mx-auto btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

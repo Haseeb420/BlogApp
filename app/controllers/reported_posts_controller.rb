@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class ReportedPostsController < ApplicationController
-  before_action :set_post, only: %i[new create]
+  before_action :set_post, only: %i[new create destroy]
   before_action :build_post_report, only: [:create]
-  def index; end
+  def index
+    @reports = ReportedPost.all
+    render layout: "moderator_dashboard"
+  end
 
   def new; end
 
@@ -14,6 +17,11 @@ class ReportedPostsController < ApplicationController
         format.js { render "posts/show.js.erb" }
       end
     end
+  end
+  def destroy
+    @suggestion = @post.reported_posts.find(params[:id])
+    @suggestion.destroy
+    redirect_to reported_posts_path
   end
 
   private

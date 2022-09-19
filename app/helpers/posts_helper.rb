@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module PostsHelper
+  def get_post_title_id(post_id)
+    Post.find(post_id).title.truncate(100)
+  end
+
   def date_formatter(date)
     date&.strftime("%d-%m-%Y")
   end
