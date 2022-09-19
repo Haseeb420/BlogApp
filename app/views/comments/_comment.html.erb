@@ -1,5 +1,5 @@
 <div class="row">
-  <%# <div class="col-12"> %>
+  <%= render 'comments/alerts' %>
   <% unless comment.parent_id || !comment.persisted? %>
     <div class="card mb-2 col-12">
       <div class="card-header">
@@ -9,24 +9,56 @@
         <%= comment.body.html_safe %>
       </div>
       <div class="card-footer">
-        <div class="col-3 ms-auto">
-          <span id="comment-<%= comment.id %>-likes"><%= comment.comment_likes.count %></span>
-          <%= link_to add_comment_like_path(comment_id: comment.id), remote:true do  %>
-            <%= icon("fa-solid","thumbs-up") %>
-          <% end %>
-          <%= link_to 'reply', new_post_comment_path(@post, parent_id: comment.id), remote: true, class: 'd-inline btn btn-light ' %>
-        </div>
+        <%= render partial:'comments/like_btn',locals:{comment: comment} %>
       </div>
-      <div class="row" id="comment-reply-<%= comment.id%>">
-        <% if comment.replies.any? %>
-          <% comment.replies.each do |reply| %>
-            <%= render partial: 'comments/reply', locals: { reply: reply } %>
-          <% end %>
-        <% end %>
-      </div>
+      <% if comment.replies.any? %>
+        <%= render partial:"comments/reply" , collection:comment.replies   %>
+      <% end %>
     </div>
   <% end %>
-  <div class="col-10 mx-auto">
+  <div class="col-10 mx-auto comment-reply-<%= comment.id%>-form">
     <div id="reply-form-<%= comment.id %>"></div>
   </div>
 </div>
+<script>
+  $(document).ready(()=>{
+    $(".comment-like-error").hide();
+   $(".comment-reply-error").hide();
+   function show_reply_form(post_id){
+     <% if !current_user.nil?%>
+         $(`#${post_id}`).show();
+     <%else%>
+       $("#login_error").show();
+
+       setTimeout(() => {
+         $("#login_error").hide();
+
+       },3000);
+     <%end%>
+   }
+   $(".comment-like-btn").click(()=>{
+     $(".comment-like-error").show();
+     setTimeout(() => {
+         $(".comment-like-error").hide();
+       },3000);
+   });
+   $(".reply-btn").click(()=>{
+       $(".comment-reply-error").show();
+       setTimeout(() => {
+         $(".comment-reply-error").hide();
+       },3000);
+   });
+  });
+  $(document).ready(()=>{
+    $("#comment-textbox").keyup(()=>{
+       $("comment_btn").attr("disabled","true");
+      let comment_body = $("#comment-textbox").val();
+      if(comment_body.length<1)
+      {
+        $("#comment_error").text("Comment can't be empty");
+
+        return false;
+      }
+    });
+  });
+</script>

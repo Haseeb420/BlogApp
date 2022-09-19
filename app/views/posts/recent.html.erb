@@ -1,1 +1,24 @@
-format.json { render json: @users }
+<div class="row px-3 bg-white">
+  <h2 class="mb-3 p-4">Posts </h2>
+  <hr>
+</div>
+<div class="row bg-white px-3">
+  <h3>Recent Posts</h3>
+  <hr>
+  <table class="table  table-striped">
+    <thead>
+      <tr>
+        <th scope="col">post#</th>
+        <th  scope="col">Post Title</th>
+        <th scope="col">Published Date</th>
+        <th scope="col">Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="post_data">
+      <% @posts.each do |post| %>
+        <%= render partial:"posts/table_row", locals: {post: post} %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+<tr>
+  <th scope="row"><%= post.id %>
+  </th>
+  <td class="col-4"><%= post.title.truncate(70) %></td>
+  <td><%= date_formatter post.published_date %></td>
+  <td id="post-<%= post.id%>-status" ><%= post_status_show post.status %></td>
+  <td>
+    <%= link_to "Details", post_detail_post_path(id:post.id), class:"btn mx-auto btn-info" %>
+    <% if !post.approved? %>
+      <%= link_to "Approved", post_approval_post_path(id:post.id),id:"post-#{post.id}-status",remote:true, class:"btn mx-auto btn-success" %>
+    <% end %>
+  </td>
+</tr>

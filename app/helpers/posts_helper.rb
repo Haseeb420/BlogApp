@@ -2,7 +2,7 @@
 
 module PostsHelper
   def date_formatter(date)
-    date&.strftime('%d-%m-%Y')
+    date&.strftime("%d-%m-%Y")
   end
 
   def authur_name_by_id(id)
@@ -23,10 +23,10 @@ module PostsHelper
   end
 
   def post_status_show(status)
-    if status == 'approved'
-      'Approved'
+    if status == "approved"
+      "Approved"
     else
-      'Not Approved'
+      "Not Approved"
     end
   end
 

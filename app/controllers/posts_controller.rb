@@ -3,20 +3,32 @@
 # app/controllers/post_controller
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
-  before_action :set_post, except: %i[new create index]
+  before_action :set_post, except: %i[new create index recent]
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
   def index
     @post = policy_scope(Post)
     authorize @post
-    @posts = Post.includes(:comments).where(user_id: current_user.id).limit(10).ordered
+    @posts = current_user.user_all_post
   end
 
   def show
-    # @post = Post.includes(:comments).where(id:params[:id]).first
     authorize @post
-    @post = Post.includes(:comments).where(id: params[:id]).first
+  end
+
+  def post_approval
+    authorize @post
+    @post.status = "approved"
+    @post.save
+    respond_to do |format|
+      format.js { "" }
+    end
+  end
+
+  def post_detail
+    authorize @post
+    render layout: "moderator_dashboard"
   end
 
   def new
@@ -26,23 +38,22 @@ class PostsController < ApplicationController
 
   def recent
     @posts = Post.recents_week_post
-    authorize @post
+    authorize @posts
     respond_to do |format|
+      format.html { render layout: "moderator_dashboard" }
       format.js
     end
   end
 
   def create
     @post = Post.new(post_param)
-    # @post.published_date = Date.today.to_s
     @post.user_id = current_user.id
 
     respond_to do |format|
       authorize @post
       if @post.save
-        flash.now[:notice] = 'Post Created Succesfully'
+        flash.now[:notice] = "Post Created Succesfully"
         format.html { redirect_to post_url(@post) }
-        # format.js { render :show }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -57,27 +68,25 @@ class PostsController < ApplicationController
     if @post.update(post_param)
       redirect_to @post
     else
-      render 'edit'
+      render "edit"
     end
   end
 
   def destroy
     authorize @post
     @post.destroy
-    redirect_to action: 'index'
+    redirect_to action: "index"
   end
 
   private
+    def post_param
+      params.require(:post).permit(:title, :body, :header_img, :post_category_id)
+    end
 
-  def post_param
-    params.require(:post).permit(:title, :body, :header_img, :post_category_id)
-  end
-
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
-  def delete_post_comment
-    Comment.delete_all.where(post_id: @post.id)
-  end
+    def set_post
+      @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "Post not found"
+      redirect_to root_path
+    end
 end

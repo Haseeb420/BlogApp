@@ -1,0 +1,7 @@
+<% if @report %>
+$('#report-msg').show()
+$('#reported-post-<%= @report.post_id %>').hide();
+setTimeout(()=>{
+  $('#report-msg').hide()
+}, 3000);
+<% end %>

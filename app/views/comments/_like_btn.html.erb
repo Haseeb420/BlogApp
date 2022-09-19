@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-2 ms-auto">
+    <% if current_user.nil? %>
+      <button class="btn d-block text-secoundary comment-like-btn">
+        <span id="comment-<%= comment.id %>-likes"><%= comment.comment_likes.count %></span>
+        <%= icon("fa-solid","thumbs-up") %>
+      </button>
+    <% else %>
+      <%= link_to post_comment_comment_likes_path(post_id:comment.post_id,comment_id: comment.id),id:"comment-#{comment.id}-btn",class:'btn d-block ', remote:true do  %>
+        <span id="comment-<%= comment.id %>-likes"><%= comment.comment_likes.count %></span>
+        <%= icon("fa-solid","thumbs-up") %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-1">
+    <% if current_user.nil? %>
+      <button onclick="" class="d-inline btn btn-light reply-btn">reply</button>
+    <% else %>
+      <%= link_to 'reply', new_post_comment_path(@post, parent_id: comment.id), remote: true, class: 'd-inline btn btn-light ' %>
+    <% end %>
+  </div>
+</div>

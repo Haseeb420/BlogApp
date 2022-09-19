@@ -3,16 +3,16 @@
     <div class="col-12 mx-auto bg-white">
       <div class="new-comment-error"></div>
       <h4>Add a comment:</h4>
-      <%= form_with(model: [ @post, @post.comments.build ], remote: true) do |f| %>
+      <p id="comment_error" class="text-danger"></p>
+      <%= form_with(model: [ @post, @post.comments.build ] ,remote: true) do |f| %>
         <div class="form-group mb-3">
-          <%= f.trix_editor :body,class:'form-control', required: true, autofocus: true,id:'comment-textbox' %>
+          <%= f.trix_editor :body,class:'form-control',required: true, autofocus: true,id:'comment-textbox' %>
         </div>
         <p>
-          <%= f.submit "Add Comment",:class=>'btn btn-secondary col-2 ms-auto d-block' %>
+          <%= f.submit "Add Comment",id:'comment_btn',:class=>'btn btn-secondary col-2 ms-auto d-block' %>
         </p>
       <% end %>
     </div>
   </div>
 </div>
-
 

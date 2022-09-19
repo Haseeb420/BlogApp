@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Image data:</strong>
+  <%= @image.image_data %>
+  <%= image_tag @image.attachment, alt: "img" %>
+</p>
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>

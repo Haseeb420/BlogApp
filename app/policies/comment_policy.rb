@@ -5,11 +5,11 @@ class CommentPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
 
     def resolve
-      if user.admin?
-        scope.all
-      else
-        scope.where(stauts: 'approved')
-      end
+      scope.all
     end
+  end
+
+  def reply?
+    user.present?
   end
 end

@@ -1,1 +1,12 @@
 $("#comment-<%= @comment.id %>-likes").text("<%=j @comment.comment_likes.count.to_s %>")
+<% if CommentLike.where(user_id:@comment.user_id).exists?%>
+$('#comment-<%= @comment.id%>-btn').removeClass("bg-white");
+$('#comment-<%= @comment.id%>-btn').addClass("bg-primary");
+$('#comment-<%= @comment.id%>-btn').removeClass("text-secoundary");
+$('#comment-<%= @comment.id%>-btn').addClass("text-white");
+<%else%>
+$('#comment-<%= @comment.id%>-btn').removeClass("bg-primary");
+$('#comment-<%= @comment.id%>-btn').addClass("bg-white");
+$('#comment-<%= @comment.id%>-btn').removeClass("text-white");
+$('#comment-<%= @comment.id%>-btn').addClass("text-secoundary");
+<%end%>
