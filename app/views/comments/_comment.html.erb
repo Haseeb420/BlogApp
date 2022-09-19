@@ -12,7 +12,9 @@
         <%= render partial:'comments/like_btn',locals:{comment: comment} %>
       </div>
       <% if comment.replies.any? %>
-        <%= render partial:"comments/reply" , collection:comment.replies   %>
+        <div id="comment-<%= comment.id %>-replies">
+          <%= render partial:"comments/reply" , collection:comment.replies   %>
+        </div>
       <% end %>
     </div>
   <% end %>

@@ -1,2 +1,5 @@
 $('#reply-textbox').val("");
-$("#comment-reply-<%= @comment.parent_id%>").append("<%=j render partial: 'comments/reply', locals: { reply: @comment } %>")
+$("#comment-<%= @comment.parent_id%>-replies").append("<%=j render partial: 'comments/reply', locals: { reply: @comment } %>")
+console.log("i am trigered");
+
+console.log(<%= @comment.parent_id%>);
