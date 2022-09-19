@@ -21,26 +21,24 @@ user = User.new(
   first_name: "admin",
   last_name: "admin",
   email: "admin@blogsite.com",
-  profile_img: File.open(Rails.root.join("public/assets/images/profile_img.jpeg")),
   password: "admin123",
   password_confirmation: "admin123",
   confirmed_at: Time.now.getutc,
   user_role: "admin"
 )
-user.profile_img.attach(io: File.open(Rails.root.join("public/assets/images/profile_img.jpeg")),
+user.profile_img.attach(io: File.open(Rails.root.join("public/assets/profile_img-9f7db6fe66a347566157a80fad374979fca61f81dfef6250c43f69fb87385aa6.jpg")),
                   filename: "profile_img.jpeg")
 user.save!
 user = User.new(
   first_name: "moderator",
   last_name: "moderator",
   email: "moderator@blogsite.com",
-  profile_img: File.open(Rails.root.join("public/assets/images/profile_img.jpeg")),
   password: "moderator123",
   password_confirmation: "moderator123",
   confirmed_at: Time.now.getutc,
   user_role: "moderator"
 )
 
-user.profile_img.attach(io: File.open(Rails.root.join("public/assets/images/profile_img.jpeg")),
+user.profile_img.attach(io: File.open(Rails.root.join("public/assets/profile_img-9f7db6fe66a347566157a80fad374979fca61f81dfef6250c43f69fb87385aa6.jpg")),
                   filename: "profile_img.jpeg")
 user.save!
