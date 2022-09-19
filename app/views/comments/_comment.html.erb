@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mb-2 p-3">
   <%= render 'comments/alerts' %>
   <% unless comment.parent_id || !comment.persisted? %>
     <div class="card mb-2 col-12">
@@ -11,10 +11,10 @@
       <div class="card-footer">
         <%= render partial:'comments/like_btn',locals:{comment: comment} %>
       </div>
+    </div>
+    <div id="comment-<%= comment.id %>-replies">
       <% if comment.replies.any? %>
-        <div id="comment-<%= comment.id %>-replies">
-          <%= render partial:"comments/reply" , collection:comment.replies   %>
-        </div>
+        <%= render partial:"comments/reply" , collection:comment.replies   %>
       <% end %>
     </div>
   <% end %>
