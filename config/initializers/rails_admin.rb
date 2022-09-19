@@ -1,8 +1,7 @@
 # frozen_string_literal: true
-
+require Rails.root.join('lib', 'rails_admin', 'rails_admin_approve_user.rb')
 RailsAdmin.config do |config|
   ### Popular gems integration
-
   ## == Devise ==
   config.authenticate_with do
     warden.authenticate! scope: :user
@@ -27,6 +26,7 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
+    aprove_user
     new
     export
     bulk_delete

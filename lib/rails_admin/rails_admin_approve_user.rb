@@ -2,7 +2,8 @@ module RailsAdmin
   module Config
     module Actions
       # common config for custom actions
-      class Customaction < RailsAdmin::Config::Actions::Base
+      class AproveUser < RailsAdmin::Config::Actions::Base
+        RailsAdmin::Config::Actions.register(self)
         register_instance_option :member do  #	this is for specific record
           true
         end
@@ -12,22 +13,18 @@ module RailsAdmin
         register_instance_option :visible? do
           authorized? 		# This ensures the action only shows up for the right class
         end
-      end
-      class Foo < Customaction
-        RailsAdmin::Config::Actions.register(self)
+
         register_instance_option :only do
-          # model name here
+          User
         end
         register_instance_option :link_icon do
-          'fa fa-paper-plane' # use any of font-awesome icons
+          'icon-user'
         end
-        register_instance_option :http_methods do
-          [:get, :post]
-        end
+
         register_instance_option :controller do
           Proc.new do
-            # call model.method here
-            flash[:notice] = "Did custom action on #{@object.name}"
+            @object.update_attribute(:confirmed_at, Time.now.getutc)
+            flash[:notice] = "User approved Successfully."
             redirect_to back_or_index
           end
         end
@@ -35,4 +32,3 @@ module RailsAdmin
     end
   end
 end
-
