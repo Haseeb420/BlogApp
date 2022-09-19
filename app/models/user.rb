@@ -29,6 +29,11 @@ class User < ApplicationRecord
     posts
   end
 
+  def approved_user
+    confirmed_at = Time.now.getutc
+    confirmed_at
+  end
+
   private
     def set_default_role
       self.user_role ||= :user

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class SuggestionsController < ApplicationController
+  before_action :set_post_by_post_id, except: :index
   before_action :build_suggestion, only: [:create]
-  before_action :set_post_post_id, except: :index
+
   def index
     @suggestions = Suggestion.all
     render layout: "moderator_dashboard"
@@ -15,7 +16,7 @@ class SuggestionsController < ApplicationController
       "Suggestion not added"
     end
     respond_to do |format|
-      format.js { render "moderators/post_details.js.erb" }
+      format.js { render "posts/post_details.js.erb" }
     end
   end
 

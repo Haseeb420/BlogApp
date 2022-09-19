@@ -1,13 +1,5 @@
 <div class="row">
-  <%# <div class="col-12"> %>
-  <div class="alert alert-warning alert-dismissible fade show comment-like-error col-3 position-fixed top-0 mt-5 end-0" role="alert">
-    <strong>Please </strong> Login to like the comment.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  <div class="alert alert-warning alert-dismissible fade show comment-reply-error col-3 position-fixed top-0 mt-5 end-0" role="alert">
-    <strong>Please </strong> Login to reply on comment.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+  <%= render 'comments/alerts' %>
   <% unless comment.parent_id || !comment.persisted? %>
     <div class="card mb-2 col-12">
       <div class="card-header">
@@ -19,9 +11,9 @@
       <div class="card-footer">
         <%= render partial:'comments/like_btn',locals:{comment: comment} %>
       </div>
-      <div class="row" id="comment-reply-<%= comment.id %>">
-        <%= render comment.replies %>
-      </div>
+      <% if comment.replies.any? %>
+        <%= render partial:"comments/reply" , collection:comment.replies   %>
+      <% end %>
     </div>
   <% end %>
   <div class="col-10 mx-auto comment-reply-<%= comment.id%>-form">
@@ -29,30 +21,44 @@
   </div>
 </div>
 <script>
-  $(".comment-like-error").hide();
-  $(".comment-reply-error").hide();
-  function show_reply_form(post_id){
-    <% if !current_user.nil?%>
-        $(`#${post_id}`).show();
-    <%else%>
-      $("#login_error").show();
+  $(document).ready(()=>{
+    $(".comment-like-error").hide();
+   $(".comment-reply-error").hide();
+   function show_reply_form(post_id){
+     <% if !current_user.nil?%>
+         $(`#${post_id}`).show();
+     <%else%>
+       $("#login_error").show();
 
-      setTimeout(() => {
-        $("#login_error").hide();
+       setTimeout(() => {
+         $("#login_error").hide();
 
-      },3000);
-    <%end%>
-  }
-  $(".comment-like-btn").click(()=>{
-    $(".comment-like-error").show();
-    setTimeout(() => {
-        $(".comment-like-error").hide();
-      },3000);
+       },3000);
+     <%end%>
+   }
+   $(".comment-like-btn").click(()=>{
+     $(".comment-like-error").show();
+     setTimeout(() => {
+         $(".comment-like-error").hide();
+       },3000);
+   });
+   $(".reply-btn").click(()=>{
+       $(".comment-reply-error").show();
+       setTimeout(() => {
+         $(".comment-reply-error").hide();
+       },3000);
+   });
   });
-  $(".reply-btn").click(()=>{
-      $(".comment-reply-error").show();
-      setTimeout(() => {
-        $(".comment-reply-error").hide();
-      },3000);
+  $(document).ready(()=>{
+    $("#comment-textbox").keyup(()=>{
+       $("comment_btn").attr("disabled","true");
+      let comment_body = $("#comment-textbox").val();
+      if(comment_body.length<1)
+      {
+        $("#comment_error").text("Comment can't be empty");
+
+        return false;
+      }
+    });
   });
 </script>

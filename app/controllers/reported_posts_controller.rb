@@ -11,7 +11,7 @@ class ReportedPostsController < ApplicationController
     @report.user = current_user
     if @report.save
       respond_to do |format|
-        format.js { render "show.js.erb" }
+        format.js { render "posts/show.js.erb" }
       end
     end
   end

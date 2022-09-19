@@ -75,3 +75,7 @@ en:
       previous: "&lt; Previous"
       next: "Next &gt;"
       truncate: "..."
+  admin:
+    actions:
+      EnableUser:
+        menu: "Enable"

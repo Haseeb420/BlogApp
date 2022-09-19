@@ -6,19 +6,6 @@ class ModeratorsController < ApplicationController
   before_action :set_posts, only: %i[index]
   def index; end
 
-  def suggestions
-    @suggestions = Suggestion.all.order(created_at: :desc)
-  end
-
-  def delete_suggestions
-    Suggestion.delete(params[:id])
-    redirect_to action: "suggestions"
-  end
-
-  def reported_post
-    @reports = ReportedPost.all.order(created_at: :desc)
-  end
-
   private
     def set_posts
       @posts = Post.recents_week_post

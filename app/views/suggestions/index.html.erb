@@ -22,7 +22,7 @@
           <td><%= suggestion.body %></td>
           <td id="suggestion-<%= suggestion.id%>-status" ><%= suggestion.post_id %></td>
           <td>
-            <%= link_to "Delete", delete_suggestions_path(id:suggestion.id), class:"btn mx-auto btn-danger" %>
+            <%= link_to "Delete", post_suggestion_path(post_id: suggestion.post_id,id:suggestion.id),method: :delete, class:"btn mx-auto btn-danger" %>
           </td>
         </tr>
       <% end %>
