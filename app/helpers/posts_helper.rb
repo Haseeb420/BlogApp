@@ -37,4 +37,8 @@ module PostsHelper
   def counter_post_reported_last_week
     ReportedPost.count
   end
+
+  def post_like_exists?(user_id)
+    PostLike.where(user_id: user_id).exists?
+  end
 end

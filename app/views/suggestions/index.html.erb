@@ -15,17 +15,7 @@
       </tr>
     </thead>
     <tbody id="post_data">
-      <% @suggestions.each do |suggestion| %>
-        <tr>
-          <th scope="row"><%= suggestion.id %>
-          </th>
-          <td><%= suggestion.body %></td>
-          <td id="suggestion-<%= suggestion.id%>-status" > <%= get_post_title_id(suggestion.post_id) %> </td>
-          <td>
-            <%= link_to "Delete", post_suggestion_path(post_id: suggestion.post_id,id:suggestion.id),method: :delete, class:"btn mx-auto btn-danger" %>
-          </td>
-        </tr>
-      <% end %>
+      <%= render partial:'suggestions/suggestion', collection: @suggestions  %>
     </tbody>
   </table>
 </div>

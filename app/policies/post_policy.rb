@@ -7,7 +7,7 @@ class PostPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
-        scope.where(stauts: "approved")
+        scope.approved
       end
     end
   end

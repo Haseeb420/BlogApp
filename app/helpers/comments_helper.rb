@@ -9,4 +9,8 @@ module CommentsHelper
       "#{user.first_name} #{user.last_name}"
     end
   end
+
+  def comment_like_exists?(user_id)
+    CommentLike.where(user_id: user_id).exists?
+  end
 end

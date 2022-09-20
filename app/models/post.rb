@@ -20,7 +20,8 @@ class Post < ApplicationRecord
   # scope are defined here
   scope :ordered, -> { order(published_date: :desc) }
   scope :recents_week_post, -> { where("created_at > ?", Time.zone.now - 7.days).order(published_date: :desc) }
-  scope :all_posts, -> { includes(:comments).where(status: "approved").order(published_date: :desc) }
+  scope :approved_post, -> { where(status: "approved") }
+  scope :all_posts, -> { includes(:comments).approved.order(published_date: :desc) }
   after_initialize :set_default_role, if: :new_record?
 
   def user_post_like_exists?(user_id)

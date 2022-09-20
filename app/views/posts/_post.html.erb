@@ -23,7 +23,7 @@
                 <p> <strong>Created at:</strong> <%= date_formatter post.published_date %></p>
               </div>
               <% if !current_user.nil? %>
-                <% if PostLike.where(user_id:post.user_id).exists? %>
+                <% if post_like_exists?( post.user_id) %>
                   <%= link_to post_post_like_path(post_id:post.id),id:"post-like-btn-#{post.id}",class:"d-inline-block bg-primary text-white col-4 rounded border text-center", remote:true do %>
                     <p class="fs-5" > <span  id="post_likes-<%= post.id %>"><%= post.post_likes.count %></span> &nbsp<%= icon("fa-regular","thumbs-up") %>
                     </p>
