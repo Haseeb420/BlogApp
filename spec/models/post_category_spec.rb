@@ -3,17 +3,15 @@
 require "rails_helper"
 
 RSpec.describe PostCategory, type: :model do
-  describe "validations" do
-    describe "category name" do
-      it "must be present" do
-        @category = PostCategory.new(category_name: "category_name")
-      end
+  context "Validation Tests" do
+    it "ensure category name presense" do
+      @post_category = build(:post_category, category_name: nil).save
+      expect(@post_category).to eq(false)
     end
-  end
-  subject {
-     described_class.new(category_name: "category1")
-   }
-  it "is valid with valid attributes" do
-    expect(subject).to be_valid
+    it "ensure category name uniqueness" do
+      create(:post_category).save
+      @post_category = build(:post_category).save
+      expect(@post_category).to eq(false)
+    end
   end
 end

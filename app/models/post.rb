@@ -2,7 +2,7 @@
 
 class Post < ApplicationRecord
   belongs_to :post_category
-  has_one_attached :header_img
+  has_one_attached :header_img, dependent: :destroy
   belongs_to :user
   has_many :post_likes, dependent: :destroy
   has_many :reported_posts, dependent: :destroy
