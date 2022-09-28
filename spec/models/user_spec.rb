@@ -11,6 +11,13 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of(:last_name) }
       it { should validate_presence_of(:email) }
       it { should validate_presence_of(:password) }
+      it "profile img expected to be attached" do
+        @user = build(:user)
+        expect(@user.profile_img).to be_attached
+      end
+    end
+    context "email uniquessness Validation" do
+      it { should validate_uniqueness_of(:email).ignoring_case_sensitivity }
     end
 
     context "enum validation" do
@@ -25,6 +32,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:comments) }
     it { should have_one(:comment_like) }
     it { should have_many(:reported_posts) }
+    it { should have_one_attached(:profile_img) }
   end
 
   context "DB Test Cases" do
