@@ -3,6 +3,9 @@
 class PostLike < ApplicationRecord
   belongs_to :user
   belongs_to :post
+  validates :user_id, presence: true
+  validates :post_id, presence: true
+
   # scope :user_like_exists, -> { where(:attibute => value post_like:{user_id: })}
   # Ex:- scope :active, -> {where(:active => true)}
 

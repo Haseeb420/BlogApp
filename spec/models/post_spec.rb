@@ -3,6 +3,8 @@
 require "rails_helper"
 
 RSpec.describe Post, type: :model do
+  subject { build(:post) }
+
   context "Validation test" do
     subject { build(:post) }
     context "Title Testcases" do
@@ -15,12 +17,11 @@ RSpec.describe Post, type: :model do
       it { should validate_length_of(:body) }
     end
 
-    context "header img" do
-      it "ensure header img presense" do
-        @post = build(:post, header_img: nil).save
-        expect(@post).to eq(false)
-      end
+    context "Header Image Testcases" do
+      it { expect(subject.header_img).to be_attached }
     end
+
+
 
     context "post category id" do
       it "ensure post category id presense" do
@@ -37,8 +38,28 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  context "association Testing" do
+  context "Association Testing" do
     it { should belong_to(:user) }
     it { should belong_to(:post_category) }
+    it { should have_many(:comments) }
+    it { should have_many(:post_likes) }
+    it { should have_many(:suggestions) }
+    it { should have_many(:reported_posts) }
+  end
+
+  context "Db Testing" do
+    context "Db Columns Testing" do
+      it { should have_db_column(:title) }
+      it { should have_db_column(:body) }
+      it { should have_db_column(:published_date) }
+      it { should have_db_column(:user_id) }
+      it { should have_db_column(:post_category_id) }
+    end
+
+    context "Index Columns Testing" do
+      it { should have_db_index(:title) }
+      it { should have_db_index(:user_id) }
+      it { should have_db_index(:post_category_id) }
+    end
   end
 end

@@ -3,7 +3,6 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  # let!(:object) { FactoryBot.create(:user) }
   subject { build(:user) }
   context "Validation Test cases" do
     context "presense of All fields" do
@@ -12,8 +11,7 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of(:email) }
       it { should validate_presence_of(:password) }
       it "profile img expected to be attached" do
-        @user = build(:user)
-        expect(@user.profile_img).to be_attached
+        expect(subject.profile_img).to be_attached
       end
     end
     context "email uniquessness Validation" do
