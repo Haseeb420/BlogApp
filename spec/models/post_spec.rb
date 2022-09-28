@@ -22,6 +22,13 @@ RSpec.describe Post, type: :model do
       end
     end
 
+    context "post category id" do
+      it "ensure post category id presense" do
+        @post = build(:post, post_category_id: nil).save
+        expect(@post).to eq(false)
+      end
+    end
+
     context "Post Status test cases" do
       it "Ensures In validation" do
         @post = build(:post, status: "not_approved").save
