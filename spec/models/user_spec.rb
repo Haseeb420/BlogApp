@@ -24,6 +24,16 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context "Scopes Test Cases" do
+    it "Matches recently added users" do
+      @user1 = create(:user, email: "user1@gmail.com")
+      @user2 = create(:user, email: "user2@gmail.com")
+      @user3 = create(:user, email: "user3@gmail.com")
+      expect(User.recents_week_users).to contain_exactly(@user1, @user2, @user3)
+    end
+  end
+
+
   context "Association Test Cases" do
     it { should have_many(:posts) }
     it { should have_one(:post_like) }

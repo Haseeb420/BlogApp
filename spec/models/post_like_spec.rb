@@ -23,5 +23,4 @@ RSpec.describe PostLike, type: :model do
       it { should have_db_index(:post_id) }
     end
   end
-
 end

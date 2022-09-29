@@ -35,7 +35,6 @@ class Post < ApplicationRecord
     @post_like = post_likes.build
     @post_like.user_id = user_id
     @post_like.save
-    @post_like
   end
 
   private
