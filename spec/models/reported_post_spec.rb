@@ -15,10 +15,15 @@ RSpec.describe ReportedPost, type: :model do
     it { should belong_to(:post) }
   end
   context "Db Test Cases" do
-    it { should have_db_column(:reason) }
-    it { should have_db_column(:user_id) }
-    it { should have_db_column(:post_id) }
-    it { should have_db_index(:user_id) }
-    it { should have_db_index(:post_id) }
+    context "DB  Column Testing" do
+      it { should have_db_column(:reason) }
+      it { should have_db_column(:user_id) }
+      it { should have_db_column(:post_id) }
+    end
+
+    context "Index Column Testing" do
+      it { should have_db_index(:user_id) }
+      it { should have_db_index(:post_id) }
+    end
   end
 end

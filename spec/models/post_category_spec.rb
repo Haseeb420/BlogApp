@@ -7,7 +7,7 @@ RSpec.describe PostCategory, type: :model do
     context "ensure category name presense" do
       it { should validate_presence_of(:category_name) }
     end
-    context "email uniquessness Validation" do
+    context "Category name uniquessness Validation" do
       it { should validate_uniqueness_of(:category_name).ignoring_case_sensitivity }
     end
   end

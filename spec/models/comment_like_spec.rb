@@ -14,7 +14,13 @@ RSpec.describe CommentLike, type: :model do
   end
 
   context "DB Test Cases" do
-    it { should have_db_column(:user_id) }
-    it { should have_db_column(:comment_id) }
+    context "Db Table Column Testing" do
+      it { should have_db_column(:user_id) }
+      it { should have_db_column(:comment_id) }
+    end
+    context "Db Index Testing" do
+      it { should have_db_index(:user_id) }
+      it { should have_db_index(:comment_id) }
+    end
   end
 end

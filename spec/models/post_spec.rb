@@ -4,7 +4,9 @@ require "rails_helper"
 
 RSpec.describe Post, type: :model do
   subject { build(:post) }
-
+  let(:user) { create(:user) }
+  let(:category) { create(:post_category) }
+  let(:post) { create(:post, user_id: user.id, post_category_id: category.id) }
   context "Validation test" do
     subject { build(:post) }
     context "Title Testcases" do
@@ -69,11 +71,7 @@ RSpec.describe Post, type: :model do
     end
 
     it "should return last week post" do
-      @user = create(:user)
-      @category = create(:post_category)
-      @post1 = create(:post, user_id: @user.id, post_category_id: @category.id)
-      @posts = Post.where("created_at > ?", Time.zone.now - 7.days)
-      expect(Post.recents_week_post).to match_array(@posts)
+      expect(Post.recents_week_post).to match_array(Post.where("created_at > ?", Time.zone.now - 7.days))
     end
 
     it "should return all approved post" do

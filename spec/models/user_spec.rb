@@ -4,6 +4,9 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   subject { build(:user) }
+  let(:user1) { create(:user, email: "user1@gmail.com") }
+  let(:user2) { create(:user, email: "user2@gmail.com") }
+  let(:user3) { create(:user, email: "user3@gmail.com") }
   context "Validation Test cases" do
     context "presense of All fields" do
       it { should validate_presence_of(:first_name) }
@@ -26,10 +29,7 @@ RSpec.describe User, type: :model do
 
   context "Scopes Test Cases" do
     it "Matches recently added users" do
-      @user1 = create(:user, email: "user1@gmail.com")
-      @user2 = create(:user, email: "user2@gmail.com")
-      @user3 = create(:user, email: "user3@gmail.com")
-      expect(User.recents_week_users).to contain_exactly(@user1, @user2, @user3)
+      expect(User.recents_week_users).to contain_exactly(user1, user2, user3)
     end
   end
 
@@ -44,9 +44,15 @@ RSpec.describe User, type: :model do
   end
 
   context "DB Test Cases" do
-    it { should have_db_column(:first_name) }
-    it { should have_db_column(:last_name) }
-    it { should have_db_column(:email) }
-    it { is_expected.to have_db_index(:email) }
+    context "Db Table Columns Testing" do
+      it { should have_db_column(:first_name) }
+      it { should have_db_column(:last_name) }
+      it { should have_db_column(:email) }
+    end
+
+
+    context "Index Column Testing" do
+      it { is_expected.to have_db_index(:email) }
+    end
   end
 end
