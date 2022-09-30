@@ -76,6 +76,12 @@ RSpec.describe "Posts", type: :request do
         expect(response).to redirect_to(root_path)
       end
     end
+
+    context "Delete #delete" do
+      it "should delete post" do
+        expect { delete post_path(post1) }.to change(Post, :count).by(-1)
+      end
+    end
   end
 
   describe "When User is not signed In" do
