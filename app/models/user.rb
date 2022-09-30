@@ -35,8 +35,7 @@ class User < ApplicationRecord
   end
 
   def approved_user
-    confirmed_at = Time.now.getutc
-    confirmed_at
+    Time.now.getutc
   end
 
   private

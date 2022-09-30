@@ -8,15 +8,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-PostCategory.create(
-  category_name: "Technology"
-)
-PostCategory.create(
-  category_name: "Daily Life"
-)
-PostCategory.create(
-  category_name: "Sports"
-)
+PostCategory.create(category_name: "Technology")
+PostCategory.create(category_name: "Daily Life")
+PostCategory.create(category_name: "Sports")
 user = User.new(
   first_name: "admin",
   last_name: "admin",
@@ -27,7 +21,7 @@ user = User.new(
   user_role: "admin"
 )
 user.profile_img.attach(io: File.open(Rails.root.join("public/assets/profile_img-9f7db6fe66a347566157a80fad374979fca61f81dfef6250c43f69fb87385aa6.jpg")),
-                  filename: "profile_img.jpeg")
+                        filename: "profile_img.jpeg")
 user.save!
 user = User.new(
   first_name: "moderator",
@@ -40,5 +34,5 @@ user = User.new(
 )
 
 user.profile_img.attach(io: File.open(Rails.root.join("public/assets/profile_img-9f7db6fe66a347566157a80fad374979fca61f81dfef6250c43f69fb87385aa6.jpg")),
-                  filename: "profile_img.jpeg")
+                        filename: "profile_img.jpeg")
 user.save!

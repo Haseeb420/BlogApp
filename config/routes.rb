@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
   post "/posts/:post_id/comments-reply" => "comments#reply", as: "comment_reply"
 
-
   # moderators routes starts here
   scope "/moderator" do
     resources :posts do

@@ -64,15 +64,16 @@ gem "rails_admin_pundit", github: "sudosu/rails_admin_pundit"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
-  gem "rspec-rails", "~> 5.1", ">= 5.1.2"
   gem "factory_bot_rails"
+  gem "rspec-rails", "~> 5.1", ">= 5.1.2"
   gem "rubocop"
 
-  gem "rubocop-performance"
-  gem "rubocop-rails"
-  gem "rubocop-rspec"
   gem "rubocop-minitest"
   gem "rubocop-packaging"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
+  gem "rubocop-rake"
+  gem "rubocop-rspec"
 end
 
 group :development do
@@ -89,9 +90,9 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", ">= 2.15"
-  gem "shoulda-matchers", "~> 5.0"
-  gem "selenium-webdriver"
   gem "rails-controller-testing"
+  gem "selenium-webdriver"
+  gem "shoulda-matchers", "~> 5.0"
   # Easy installation and use of chromedriver to run system tests with Chrome
   # gem "chromedriver-helper"
 end

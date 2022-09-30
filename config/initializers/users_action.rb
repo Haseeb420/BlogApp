@@ -4,7 +4,7 @@ module RailsAdmin
   module Config
     module Actions
       class UsersActions < RailsAdmin::Config::Actions::Base
-        register_instance_option :member do  #	this is for specific record
+        register_instance_option :member do #	this is for specific record
           true
         end
         register_instance_option :pjax? do
@@ -24,10 +24,10 @@ module RailsAdmin
           "fa fa-paper-plane"
         end
         register_instance_option :http_methods do
-          [:get, :post]
+          %i[get post]
         end
         register_instance_option :controller do
-          Proc.new do
+          proc do
             # call model.method here
             User.approved_user
             flash[:notice] = "Did custom action on #{@object.name}"

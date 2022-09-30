@@ -310,6 +310,8 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
+    rubocop-rake (0.6.0)
+      rubocop (~> 1.0)
     rubocop-rspec (2.13.2)
       rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
@@ -438,6 +440,7 @@ DEPENDENCIES
   rubocop-packaging
   rubocop-performance
   rubocop-rails
+  rubocop-rake
   rubocop-rspec
   sass-rails (~> 5.0)
   selenium-webdriver

@@ -3,13 +3,13 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
-  # Hash of initial attributes for :new, :create and :update actions. This is optional
-  def attributes_for(action); end
-
   def initialize(user, record)
     @user = user
     @record = record
   end
+
+  # Hash of initial attributes for :new, :create and :update actions. This is optional
+  def attributes_for(action); end
 
   def index?
     true

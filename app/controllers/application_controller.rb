@@ -8,13 +8,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up,
-                                        keys: %i[first_name last_name birthday email password profile_img])
+                                        keys: %i[first_name last_name birthday email password
+                                                 profile_img])
       devise_parameter_sanitizer.permit(:account_update,
-                                        keys: %i[first_name last_name birthday email password profile_img])
+                                        keys: %i[first_name last_name birthday email password
+                                                 profile_img])
     end
 
   private

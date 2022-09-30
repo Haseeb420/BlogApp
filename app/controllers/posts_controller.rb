@@ -47,14 +47,14 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_param)
+    authorize @post
     @post.user_id = current_user.id
-
     respond_to do |format|
-      authorize @post
       if @post.save
         flash.now[:notice] = "Post Created Succesfully"
         format.html { redirect_to post_url(@post) }
       else
+        flash.now[:alert] = "Post not Created Succesfully"
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -65,6 +65,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    authorize @post
     if @post.update(post_param)
       redirect_to @post
     else

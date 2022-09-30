@@ -6,20 +6,22 @@ RSpec.describe Suggestion, type: :model do
   subject { build(:suggestion) }
 
   context "Validation Test Cases" do
-    it { should validate_presence_of(:body) }
-    it { should validate_presence_of(:post_id) }
+    it { is_expected.to validate_presence_of(:body) }
+    it { is_expected.to validate_presence_of(:post_id) }
   end
+
   context "Association Test Cases" do
-    it { should belong_to(:post) }
+    it { is_expected.to belong_to(:post) }
   end
+
   context "Db Test Cases" do
     context "DB Columns Testing" do
-      it { should have_db_column(:body) }
-      it { should have_db_column(:post_id) }
+      it { is_expected.to have_db_column(:body) }
+      it { is_expected.to have_db_column(:post_id) }
     end
 
     context "Index Column Testing" do
-      it { should have_db_index(:post_id) }
+      it { is_expected.to have_db_index(:post_id) }
     end
   end
 end
