@@ -5,9 +5,10 @@ require "rails_helper"
 RSpec.describe Post, type: :model do
   subject { build(:post) }
 
-  let(:user) { create(:user) }
-  let(:category) { create(:post_category) }
-  let(:post) { create(:post, user_id: user.id, post_category_id: category.id) }
+  let!(:user) { create(:user) }
+  let!(:category) { create(:post_category) }
+  let!(:post1) { create(:post, user_id: user.id, post_category_id: category.id, status: "approved") }
+  let!(:post1_like) { create(:post_like, user_id: user.id, post_id: post1.id) }
 
   context "Validation test" do
     subject { build(:post) }
@@ -82,8 +83,17 @@ RSpec.describe Post, type: :model do
   end
 
   context "Post Method Test Cases" do
+    it "add user like" do
+      post1.add_post_like(user.id)
+      expect(post1.user_post_like_exists?(user.id)).to be(true)
+    end
     it "checks user like exists" do
-      expect(subject.user_post_like_exists?(1)).to be(false)
+      expect(subject.user_post_like_exists?(user.id)).to be(false)
+    end
+
+    it "Delete current user Post like" do
+      post1.delete_user_post_like(user.id)
+      expect(post1.user_post_like_exists?(user.id)).to be(false)
     end
   end
 end

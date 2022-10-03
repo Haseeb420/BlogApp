@@ -8,6 +8,9 @@ RSpec.describe User, type: :model do
   let(:user1) { create(:user, email: "user1@gmail.com") }
   let(:user2) { create(:user, email: "user2@gmail.com") }
   let(:user3) { create(:user, email: "user3@gmail.com") }
+  let(:category) { create(:post_category) }
+  let(:post1) { create(:post, user_id: user1.id, post_category_id: category.id, status: "approved") }
+  let(:post2) { create(:post, user_id: user1.id, post_category_id: category.id, status: "approved") }
 
   context "Validation Test cases" do
     context "presense of All fields" do
@@ -31,12 +34,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context "Scopes Test Cases" do
-    it "Matches recently added users" do
-      expect(described_class.recents_week_users).to contain_exactly(user1, user2, user3)
-    end
-  end
-
   context "Association Test Cases" do
     it { is_expected.to have_many(:posts) }
     it { is_expected.to have_one(:post_like) }
@@ -55,6 +52,20 @@ RSpec.describe User, type: :model do
 
     context "Index Column Testing" do
       it { is_expected.to have_db_index(:email) }
+    end
+  end
+
+
+  context "Scopes Test Cases" do
+    it "Matches recently added users" do
+      expect(described_class.recents_week_users).to contain_exactly(user1, user2, user3)
+    end
+  end
+
+
+  context "Methods Test Cases" do
+    it "Users all post" do
+      expect(user1.user_all_post).to contain_exactly(post1, post2)
     end
   end
 end

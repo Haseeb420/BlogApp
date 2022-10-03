@@ -67,8 +67,10 @@ class PostsController < ApplicationController
   def update
     authorize @post
     if @post.update(post_param)
+      flash.now[:notice] = "Post Updated Succesfully"
       redirect_to @post
     else
+      flash.now[:alert] = "Post not Updated Succesfully"
       render "edit"
     end
   end
