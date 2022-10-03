@@ -2,15 +2,14 @@
 
 class Post < ApplicationRecord
   belongs_to :post_category
-  has_one_attached :header_img
+  has_one_attached :header_img, dependent: :destroy
   belongs_to :user
   has_many :post_likes, dependent: :destroy
   has_many :reported_posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :suggestions, dependent: :destroy
   enum status: { not_approved: 0, approved: 1 }
-
-
+  validates :post_category_id, presence: true
   validates :title, presence: true, length: { minimum: 3, maximum: 200 }
   validates :body, presence: true, length: { minimum: 50 }
   validates :header_img, presence: true, blob: { content_type: ["image/png", "image/jpg", "image/jpeg"],
@@ -36,7 +35,6 @@ class Post < ApplicationRecord
     @post_like = post_likes.build
     @post_like.user_id = user_id
     @post_like.save
-    @post_like
   end
 
   private

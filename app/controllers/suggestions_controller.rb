@@ -36,6 +36,7 @@ class SuggestionsController < ApplicationController
     def build_suggestion
       @suggestion = @post.suggestions.build(suggestion_params)
     end
+
     def set_suggestion
       @suggestion = Suggestion.find(params[:id])
     end

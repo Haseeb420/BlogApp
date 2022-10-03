@@ -13,6 +13,11 @@ class User < ApplicationRecord
   has_many :posts, dependent: :delete_all
   has_one_attached :profile_img
   # all relations are ends here
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :password, presence: true
+  validates :password_confirmation, presence: true
   validates :profile_img, presence: true, blob: { content_type: ["image/png", "image/jpg", "image/jpeg"],
                                                   size_range: 1..(5.megabytes) }
 
@@ -27,11 +32,6 @@ class User < ApplicationRecord
 
   def user_all_post
     posts
-  end
-
-  def approved_user
-    confirmed_at = Time.now.getutc
-    confirmed_at
   end
 
   private

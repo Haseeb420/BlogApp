@@ -18,6 +18,7 @@ class ReportedPostsController < ApplicationController
       end
     end
   end
+
   def destroy
     @suggestion = @post.reported_posts.find(params[:id])
     @suggestion.destroy

@@ -6,7 +6,7 @@ module RailsAdmin
       # common config for custom actions
       class AproveUser < RailsAdmin::Config::Actions::Base
         RailsAdmin::Config::Actions.register(self)
-        register_instance_option :member do  #	this is for specific record
+        register_instance_option :member do #	this is for specific record
           true
         end
         register_instance_option :pjax? do
@@ -24,7 +24,7 @@ module RailsAdmin
         end
 
         register_instance_option :controller do
-          Proc.new do
+          proc do
             @object.update_attribute(:confirmed_at, Time.now.getutc)
             flash[:notice] = "User approved Successfully."
             redirect_to back_or_index

@@ -9,6 +9,8 @@ class Comment < ApplicationRecord
   has_many    :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
 
   validates :body, presence: true
+  validates :user_id, presence: true
+  validates :post_id, presence: true
 
   def user_comment_like_exists?(user_id)
     comment_likes.where("user_id=?", user_id).exists?

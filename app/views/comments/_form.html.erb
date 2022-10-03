@@ -4,7 +4,7 @@
       <div class="new-comment-error"></div>
       <h4>Add a comment:</h4>
       <p id="comment_error" class="text-danger"></p>
-      <%= form_with(model: [ @post, @post.comments.build ] ,remote: true) do |f| %>
+      <%= form_with(model: [ @post, @post.comments.build ] ,remote: true,url: post_comments_path(post_id:@post.id)) do |f| %>
         <div class="form-group mb-3">
           <%= f.trix_editor :body,class:'form-control',required: true, autofocus: true,id:'comment-textbox' %>
         </div>
@@ -15,4 +15,3 @@
     </div>
   </div>
 </div>
-

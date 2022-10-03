@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
     end
 
     def delete_comments_post
-      @comments = @post.comments.find(params[:id])
+      @comment = @post.comments.find(params[:id])
       @comment.destroy
     end
 end
