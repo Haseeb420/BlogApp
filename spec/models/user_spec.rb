@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
   let(:post1) { create(:post, user_id: user1.id, post_category_id: category.id, status: "approved") }
   let(:post2) { create(:post, user_id: user1.id, post_category_id: category.id, status: "approved") }
 
-  context "Validation Test cases" do
+  describe "Validation Test cases" do
     context "presense of All fields" do
       it { is_expected.to validate_presence_of(:first_name) }
       it { is_expected.to validate_presence_of(:last_name) }
@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_one_attached(:profile_img) }
   end
 
-  context "DB Test Cases" do
+  describe "DB Test Cases" do
     context "Db Table Columns Testing" do
       it { is_expected.to have_db_column(:first_name) }
       it { is_expected.to have_db_column(:last_name) }
@@ -61,7 +61,6 @@ RSpec.describe User, type: :model do
       expect(described_class.recents_week_users).to contain_exactly(user1, user2, user3)
     end
   end
-
 
   context "Methods Test Cases" do
     it "Users all post" do

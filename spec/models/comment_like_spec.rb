@@ -13,7 +13,7 @@ RSpec.describe CommentLike, type: :model do
     it { is_expected.to belong_to(:comment) }
   end
 
-  context "DB Test Cases" do
+  describe "DB Test Cases" do
     context "Db Table Column Testing" do
       it { is_expected.to have_db_column(:user_id) }
       it { is_expected.to have_db_column(:comment_id) }

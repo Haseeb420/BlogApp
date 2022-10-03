@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe PostCategory, type: :model do
-  context "Validation Tests" do
+  describe "Validation Tests" do
     context "ensure category name presense" do
       it { is_expected.to validate_presence_of(:category_name) }
     end

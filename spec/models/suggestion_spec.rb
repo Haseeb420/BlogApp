@@ -14,7 +14,7 @@ RSpec.describe Suggestion, type: :model do
     it { is_expected.to belong_to(:post) }
   end
 
-  context "Db Test Cases" do
+  describe "Db Test Cases" do
     context "DB Columns Testing" do
       it { is_expected.to have_db_column(:body) }
       it { is_expected.to have_db_column(:post_id) }

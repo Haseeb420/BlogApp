@@ -20,7 +20,7 @@ RSpec.describe Comment, type: :model do
     it { is_expected.to have_many(:replies) }
   end
 
-  context "Db Test Cases" do
+  describe "Db Test Cases" do
     context "Db Table Column Testing" do
       it { is_expected.to have_db_column(:user_id) }
       it { is_expected.to have_db_column(:post_id) }

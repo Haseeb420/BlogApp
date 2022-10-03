@@ -10,7 +10,7 @@ RSpec.describe Post, type: :model do
   let!(:post1) { create(:post, user_id: user.id, post_category_id: category.id, status: "approved") }
   let!(:post1_like) { create(:post_like, user_id: user.id, post_id: post1.id) }
 
-  context "Validation test" do
+  describe "Validation test" do
     subject { build(:post) }
 
     context "Title Testcases" do
@@ -51,7 +51,7 @@ RSpec.describe Post, type: :model do
     it { is_expected.to have_many(:reported_posts) }
   end
 
-  context "Db Testing" do
+  describe "Db Testing" do
     context "Db Columns Testing" do
       it { is_expected.to have_db_column(:title) }
       it { is_expected.to have_db_column(:body) }

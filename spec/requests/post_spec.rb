@@ -104,21 +104,23 @@ RSpec.describe "Posts", type: :request do
       end
     end
 
-    context "Moderator user methods" do
+    describe "Moderator user methods testing authorization" do
       context "GET #approved Post"  do
         it "Approved Post by Moderator" do
           sign_in(moderator)
           get post_approval_post_path(post1), xhr: true
           expect(response).to have_http_status(:ok)
         end
+
         it "should redirect to root as a simple user" do
           get post_approval_post_path(post1), xhr: true
           expect(flash["alert"]).to eq("You are not authorized to perform this action.")
           expect(response).to redirect_to(root_path)
         end
       end
+
       context "Get Recent Post" do
-        it "should redirect to root with alert" do
+        it "should return recent post" do
           sign_in(moderator)
           get recent_posts_path
           expect(response).to have_http_status(:ok)

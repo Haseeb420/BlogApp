@@ -13,7 +13,7 @@ RSpec.describe PostLike, type: :model do
     it { is_expected.to belong_to(:post) }
   end
 
-  context "DB Testing" do
+  describe "DB Testing" do
     context "Column Testing" do
       it { is_expected.to have_db_column(:user_id) }
       it { is_expected.to have_db_column(:post_id) }

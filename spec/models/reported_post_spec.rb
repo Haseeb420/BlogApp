@@ -16,7 +16,7 @@ RSpec.describe ReportedPost, type: :model do
     it { is_expected.to belong_to(:post) }
   end
 
-  context "Db Test Cases" do
+  describe "Db Test Cases" do
     context "DB Column Testing" do
       it { is_expected.to have_db_column(:reason) }
       it { is_expected.to have_db_column(:user_id) }
