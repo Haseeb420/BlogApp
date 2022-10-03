@@ -19,6 +19,7 @@ module BlogApp
     # the framework and any gems in your application.
     config.i18n.default_locale = :en
     config.assets.initialize_on_precompile = false
+    config.time_zone = "Asia/Karachi"
     config.exceptions_app = self.routes
     config.active_storage.service = :cloudinary
     Cloudinary.config_from_url("cloudinary://735146786352999:yK74dJRJd9savEn2RT4FyeLnR-U@blog-site-h")
