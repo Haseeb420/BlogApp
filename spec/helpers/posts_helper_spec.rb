@@ -13,7 +13,7 @@ RSpec.describe PostsHelper, type: :helper do
 
   it "should return date in dd-mm-yyyy format" do
     date = Time.now
-    expect(helper.date_formatter(date)).to eq("03-10-2022")
+    expect(helper.date_formatter(date)).to eq(Time.now.strftime("%d-%m-%Y"))
   end
 
   it "should return authur full name" do
