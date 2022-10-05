@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :reported_post do
     user_id { 1 }
     post_id { 1 }
-    reason { "Some reason" }
+    reason { 'Some reason' }
   end
 end

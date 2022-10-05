@@ -20,13 +20,13 @@ module RailsAdmin
           User
         end
         register_instance_option :link_icon do
-          "icon-user"
+          'icon-user'
         end
 
         register_instance_option :controller do
           proc do
-            @object.update_attribute(:confirmed_at, Time.now.getutc)
-            flash[:notice] = "User approved Successfully."
+            @object.update_attribute(:confirmed_at, Time.zone.now.getutc)
+            flash[:notice] = 'User approved Successfully.'
             redirect_to back_or_index
           end
         end

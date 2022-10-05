@@ -14,7 +14,7 @@ class PostLikesController < ApplicationController
 
     respond_to do |format|
       # @post = Comment.find(params[:post_id]).likes.count
-      format.js { render "home/index.js.erb" }
+      format.js { render 'home/index.js.erb' }
     end
   end
 

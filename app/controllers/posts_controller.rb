@@ -17,32 +17,9 @@ class PostsController < ApplicationController
     authorize @post
   end
 
-  def post_approval
-    authorize @post
-    @post.status = "approved"
-    @post.save
-    respond_to do |format|
-      format.js { "" }
-    end
-  end
-
-  def post_detail
-    authorize @post
-    render layout: "moderator_dashboard"
-  end
-
   def new
     @post = Post.new
     authorize @post
-  end
-
-  def recent
-    @posts = Post.recents_week_post
-    authorize @posts
-    respond_to do |format|
-      format.html { render layout: "moderator_dashboard" }
-      format.js
-    end
   end
 
   def create
@@ -51,10 +28,10 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     respond_to do |format|
       if @post.save
-        flash.now[:notice] = "Post Created Succesfully"
+        flash.now[:notice] = 'Post Created Succesfully'
         format.html { redirect_to post_url(@post) }
       else
-        flash.now[:alert] = "Post not Created Succesfully"
+        flash.now[:alert] = 'Post not Created Succesfully'
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -67,18 +44,41 @@ class PostsController < ApplicationController
   def update
     authorize @post
     if @post.update(post_param)
-      flash.now[:notice] = "Post Updated Succesfully"
+      flash.now[:notice] = 'Post Updated Succesfully'
       redirect_to @post
     else
-      flash.now[:alert] = "Post not Updated Succesfully"
-      render "edit"
+      flash.now[:alert] = 'Post not Updated Succesfully'
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     authorize @post
     @post.destroy
-    redirect_to action: "index"
+    redirect_to action: 'index'
+  end
+
+  def post_approval
+    authorize @post
+    @post.status = 'approved'
+    @post.save
+    respond_to do |format|
+      format.js { '' }
+    end
+  end
+
+  def post_detail
+    authorize @post
+    render layout: 'moderator_dashboard'
+  end
+
+  def recent
+    @posts = Post.recents_week_post
+    authorize @posts
+    respond_to do |format|
+      format.html { render layout: 'moderator_dashboard' }
+      format.js
+    end
   end
 
   private
@@ -89,7 +89,7 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "Post not found"
+      flash[:alert] = 'Post not found'
       redirect_to root_path
     end
 end

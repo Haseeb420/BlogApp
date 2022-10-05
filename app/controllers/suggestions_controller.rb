@@ -6,17 +6,17 @@ class SuggestionsController < ApplicationController
 
   def index
     @suggestions = Suggestion.all_suggestions
-    render layout: "moderator_dashboard"
+    render layout: 'moderator_dashboard'
   end
 
   def create
     @notice = if @suggestion.save
-      "Suggestion added successfully"
+      'Suggestion added successfully'
     else
-      "Suggestion not added"
+      'Suggestion not added'
     end
     respond_to do |format|
-      format.js { render "posts/post_details.js.erb" }
+      format.js { render 'posts/post_details.js.erb' }
     end
   end
 

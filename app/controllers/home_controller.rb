@@ -14,8 +14,9 @@ class HomeController < ApplicationController
 
     def redirect_user_dashaboard
       if !current_user.nil? && current_user.moderator?
-        redirect_to controller: "moderators", action: "index"
+        redirect_to controller: 'moderators',
+                    action: 'index'
       end
-      redirect_to "/admin" if !current_user.nil? && current_user.admin?
+      redirect_to '/admin' if !current_user.nil? && current_user.admin?
     end
 end

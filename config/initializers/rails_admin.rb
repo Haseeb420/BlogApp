@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require Rails.root.join("lib", "rails_admin", "rails_admin_approve_user.rb")
+require Rails.root.join('lib', 'rails_admin', 'rails_admin_approve_user.rb')
 RailsAdmin.config do |config|
   ### Popular gems integration
   ## == Devise ==
@@ -48,7 +48,7 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
 
-  config.model "User" do
+  config.model 'User' do
     list do
       field :id
       field :first_name

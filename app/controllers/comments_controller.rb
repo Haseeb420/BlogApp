@@ -23,10 +23,14 @@ class CommentsController < ApplicationController
 
   def create
     @comment.user = current_user
-    @comment.save
-    respond_to do |format|
-      format.html { redirect_to post_path(@post) }
-      format.js
+    if @comment.save
+      respond_to do |format|
+        format.html { redirect_to post_path(@post) }
+        format.js
+      end
+    else
+      flash.now[:alert] = 'Comment not added Succesfully'
+      render new, status: :unprocessable_entity
     end
   end
 

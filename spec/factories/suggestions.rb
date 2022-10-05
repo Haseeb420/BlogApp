@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :suggestion do
-    body { "MyText" }
+    body { 'MyText' }
     post_id { 1 }
   end
 end

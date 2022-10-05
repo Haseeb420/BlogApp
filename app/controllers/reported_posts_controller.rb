@@ -5,7 +5,7 @@ class ReportedPostsController < ApplicationController
   before_action :build_post_report, only: [:create]
   def index
     @reports = ReportedPost.all
-    render layout: "moderator_dashboard"
+    render layout: 'moderator_dashboard'
   end
 
   def new; end
@@ -14,7 +14,7 @@ class ReportedPostsController < ApplicationController
     @report.user = current_user
     if @report.save
       respond_to do |format|
-        format.js { render "posts/show.js.erb" }
+        format.js { render 'posts/show.js.erb' }
       end
     end
   end

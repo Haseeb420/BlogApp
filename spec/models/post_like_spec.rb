@@ -1,27 +1,22 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe PostLike, type: :model do
-  context "Validation Testing" do
-    it { is_expected.to validate_presence_of(:user_id) }
-    it { is_expected.to validate_presence_of(:post_id) }
+  context 'Association Testing' do
+    it { should belong_to(:user).class_name('User') }
+    it { should belong_to(:post).class_name('Post') }
   end
 
-  context "Association Testing" do
-    it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:post) }
-  end
-
-  describe "DB Testing" do
-    context "Column Testing" do
-      it { is_expected.to have_db_column(:user_id) }
-      it { is_expected.to have_db_column(:post_id) }
+  describe 'DB Testing' do
+    context 'Column Testing' do
+      it { should have_db_column(:user_id) }
+      it { should have_db_column(:post_id) }
     end
 
-    context "Index Testing" do
-      it { is_expected.to have_db_index(:user_id) }
-      it { is_expected.to have_db_index(:post_id) }
+    context 'Index Testing' do
+      it { should have_db_index(:user_id) }
+      it { should have_db_index(:post_id) }
     end
   end
 end
