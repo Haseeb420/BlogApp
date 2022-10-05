@@ -10,7 +10,7 @@ RSpec.describe Post, type: :model do
   end
   let(:post1_like) { create(:post_like, user_id: user.id, post_id: post1.id) }
 
-  context 'Association Testing' do
+  context 'Association Tests' do
     it { should belong_to(:user).class_name('User') }
     it { should belong_to(:post_category).class_name('PostCategory') }
     it { should have_many(:comments).class_name('Comment').dependent(:destroy) }
@@ -81,8 +81,8 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe 'Db Testing' do
-    context 'Db Columns Testing' do
+  describe 'Db Tests' do
+    context 'Db Columns Tests' do
       it { should have_db_column(:title) }
       it { should have_db_column(:body) }
       it { should have_db_column(:published_date) }
@@ -90,7 +90,7 @@ RSpec.describe Post, type: :model do
       it { should have_db_column(:post_category_id) }
     end
 
-    context 'Index Columns Testing' do
+    context 'Index Columns Tests' do
       it { should have_db_index(:title) }
       it { should have_db_index(:user_id) }
       it { should have_db_index(:post_category_id) }

@@ -3,21 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe PostCategory, type: :model do
-  context 'Associations Testing' do
+  context 'Associations Tests' do
     it { should have_many(:posts).class_name('Post') }
   end
 
   describe 'Validation Tests' do
-    context 'ensure category name presense' do
+    context 'should ensure category name presense' do
       it { should validate_presence_of(:category_name) }
     end
 
-    context 'Category name uniquessness Validation' do
+    context 'category name should be unique' do
       it { should validate_uniqueness_of(:category_name).ignoring_case_sensitivity }
     end
   end
 
-  context 'Db Testing' do
+  context 'Db Tests' do
     it { should have_db_column(:category_name) }
   end
 end

@@ -4,10 +4,6 @@ require 'rails_helper'
 
 RSpec.describe 'Comments', type: :request do
   let(:login_user) { create(:user, confirmed_at: Time.zone.now.getutc) }
-  let(:moderator) do
-    create(:user, email: 'md@gmail.com', confirmed_at: Time.zone.now.getutc,
-                             user_role: 'moderator')
-  end
   let(:category) { create(:post_category, category_name: 'testing') }
   let(:post1) {  create(:post, user_id: login_user.id, post_category_id: category.id) }
   let(:comment1) { create(:comment, user_id: login_user.id, post_id: post1.id) }

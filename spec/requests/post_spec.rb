@@ -4,10 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   let(:login_user) { create(:user, confirmed_at: Time.zone.now.getutc) }
-  let(:moderator) do
-    create(:user, email: 'md@gmail.com', confirmed_at: Time.zone.now.getutc,
-                             user_role: 'moderator')
-  end
+  let(:moderator) { create(:user, email: 'md@gmail.com', confirmed_at: Time.zone.now.getutc,
+                             user_role: 'moderator') }
   let(:category) { create(:post_category, category_name: 'testing') }
   let(:header_img) do
     Rack::Test::UploadedFile.new Rails.root.join('public/assets/profile_img-9f7db6fe66a347566157a80fad374979fca61f81dfef6250c43f69fb87385aa6.jpg'),
@@ -196,6 +194,17 @@ RSpec.describe 'Posts', type: :request do
         get post_detail_post_path(post1)
         expect(flash['alert']).to eq('You are not authorized to perform this action.')
         expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe 'authentication tests' do
+      context 'when user is not logged in' do
+        it do
+          get post_path(post1)
+          expect(flash[:alert]).to eq('You need to sign in or sign up before continuing.')
+          expect(response).to have_http_status(:redirect)
+          expect(response).to redirect_to(new)
+        end
       end
     end
   end

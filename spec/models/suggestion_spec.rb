@@ -14,7 +14,7 @@ RSpec.describe Suggestion, type: :model do
   end
 
   describe 'sopes tests' do
-    context 'should return all suggestion in desending order' do
+    context 'should return all suggestion in desending order of created date' do
       it do
         expect(described_class.all_suggestions).to eq(described_class.all.order(created_at: :desc))
       end

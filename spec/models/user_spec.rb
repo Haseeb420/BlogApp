@@ -55,14 +55,16 @@ RSpec.describe User, type: :model do
   end
 
   context 'Scopes Tests' do
-    it 'Matches recently added users' do
+    it 'should matches recently added users' do
       expect(described_class.recents_week_users).to contain_exactly(user1, user2, user3)
     end
   end
 
-  context 'Methods Tests' do
-    it 'Users all post' do
-      expect(user1.user_all_post).to contain_exactly(post1, post2)
+  describe 'Instance method tests' do
+    context 'should return all posts of current user ' do
+      it do
+        expect(user1.user_all_post).to contain_exactly(post1, post2)
+      end
     end
   end
 

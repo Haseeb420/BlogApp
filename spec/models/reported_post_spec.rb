@@ -15,13 +15,13 @@ RSpec.describe ReportedPost, type: :model do
   end
 
   describe 'Db Test Cases' do
-    context 'DB Column Testing' do
+    context 'DB Column Tests' do
       it { should have_db_column(:reason) }
       it { should have_db_column(:user_id) }
       it { should have_db_column(:post_id) }
     end
 
-    context 'Index Column Testing' do
+    context 'Index Column Tests' do
       it { should have_db_index(:user_id) }
       it { should have_db_index(:post_id) }
     end
