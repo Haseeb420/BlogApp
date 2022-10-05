@@ -54,8 +54,12 @@ class PostsController < ApplicationController
 
   def destroy
     authorize @post
-    @post.destroy
-    redirect_to action: 'index'
+    if @post.destroy
+      redirect_to posts_path
+    else
+      flash[:alert] = 'Post not deleted'
+      redirect_to post_path(@post)
+    end
   end
 
   def post_approval
@@ -63,7 +67,7 @@ class PostsController < ApplicationController
     @post.status = 'approved'
     @post.save
     respond_to do |format|
-      format.js { '' }
+      format.js
     end
   end
 

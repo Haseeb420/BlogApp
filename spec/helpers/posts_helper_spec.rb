@@ -22,7 +22,7 @@ RSpec.describe PostsHelper, type: :helper do
   end
 
   it 'returns authur full name' do
-    expect(helper.authur_name_by_id(user.id)).to eq('Haseeb Malik')
+    expect(helper.authur_name_by_id(user.id)).to eq("#{user.first_name} #{user.last_name}")
   end
 
   it 'returns post count' do

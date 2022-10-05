@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :comment do
-    post_id { 1 }
-    user_id { 1 }
-    body { 'this is a comment.' }
+    association :post
+    association :user
+    body { Faker::Lorem.characters(number: 20) }
   end
 end

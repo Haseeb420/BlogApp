@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :post_category do
-    category_name { 'Sports' }
+    category_name { Faker::Name.name }
   end
 end

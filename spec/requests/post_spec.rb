@@ -14,8 +14,8 @@ RSpec.describe 'Posts', type: :request do
   let(:param) do
     {
       post: {
-        title: 'This is new Post',
-        body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took",
+        title: Faker::Lorem.characters(number: 20),
+        body: Faker::Lorem.characters(number: 60),
         post_category_id: category.id,
         header_img: header_img
       }
@@ -25,13 +25,15 @@ RSpec.describe 'Posts', type: :request do
   let(:invalid_param) do
     {
       post: {
-        title: 'This is new Post',
+        title: Faker::Lorem.characters(number: 20),
         post_category_id: category.id,
         header_img: header_img
       }
     }
   end
   let(:post1) { create(:post, user_id: login_user.id, post_category_id: category.id) }
+  let!(:post2) { create(:post, user_id: login_user.id, post_category_id: category.id) }
+
   before do
     sign_in(login_user)
   end
@@ -108,7 +110,8 @@ RSpec.describe 'Posts', type: :request do
       it  do
         patch post_path(post1), params: { post: { title: 'I am updating this' } }
         expect(flash['notice']).to eq('Post Updated Succesfully')
-        expect(assigns(:post).title).to eq('I am updating this')
+        post1.reload
+        expect(post1.title).to eq('I am updating this')
       end
     end
     context 'should not update post with in-valid attributes' do
@@ -123,15 +126,19 @@ RSpec.describe 'Posts', type: :request do
   describe 'Delete #delete' do
     context 'should delete post' do
       it do
-        get post_path(post1)
-        expect { delete post_path(post1) }.to change(Post, :count).by(-1)
+        expect { delete post_path(post2) }.to change(Post, :count).by(-1)
         expect(response).to have_http_status(:redirect)
       end
     end
     context "shouldn't delete post" do
+      before(:each) do
+        allow(post1).to receive(:destroy).and_return(false)
+        allow(Post).to receive(:find).and_return(post1)
+      end
       it do
-        expect { delete post_path(post1) }.to change(Post, :count).by(0)
-        expect(response).to have_http_status(:redirect)
+        delete post_path(post1)
+        expect(flash['alert']).to eq('Post not deleted')
+        expect(response).to redirect_to(post_path(assigns(:post)))
       end
     end
   end
@@ -194,17 +201,6 @@ RSpec.describe 'Posts', type: :request do
         get post_detail_post_path(post1)
         expect(flash['alert']).to eq('You are not authorized to perform this action.')
         expect(response).to redirect_to(root_path)
-      end
-    end
-
-    describe 'authentication tests' do
-      context 'when user is not logged in' do
-        it do
-          get post_path(post1)
-          expect(flash[:alert]).to eq('You need to sign in or sign up before continuing.')
-          expect(response).to have_http_status(:redirect)
-          expect(response).to redirect_to(new)
-        end
       end
     end
   end

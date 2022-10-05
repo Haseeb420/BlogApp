@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :suggestion do
-    body { 'MyText' }
-    post_id { 1 }
+    body { Faker::Lorem.characters(number: 20) }
+    association :post
   end
 end

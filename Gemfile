@@ -94,6 +94,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'faker'
   # Easy installation and use of chromedriver to run system tests with Chrome
   # gem "chromedriver-helper"
 end

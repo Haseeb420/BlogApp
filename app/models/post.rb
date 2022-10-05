@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   has_many :reported_posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :suggestions, dependent: :destroy
-  has_one_attached :header_img, dependent: :destroy
+  has_one_attached :header_img
 
   enum status: { not_approved: 0, approved: 1 }
 

@@ -12,11 +12,11 @@ RSpec.describe Post, type: :model do
 
   context 'Association Tests' do
     it { should belong_to(:user).class_name('User') }
-    it { should belong_to(:post_category).class_name('PostCategory') }
-    it { should have_many(:comments).class_name('Comment').dependent(:destroy) }
-    it { should have_many(:post_likes).class_name('PostLike').dependent(:destroy) }
-    it { should have_many(:suggestions).class_name('Suggestion').dependent(:destroy) }
-    it { should have_many(:reported_posts).class_name('ReportedPost').dependent(:destroy) }
+    it { should belong_to(:post_category) }
+    it { should have_many(:comments).dependent(:destroy) }
+    it { should have_many(:post_likes) }
+    it { should have_many(:suggestions).dependent(:destroy) }
+    it { should have_many(:reported_posts).dependent(:destroy) }
   end
 
   describe 'Validation test' do
