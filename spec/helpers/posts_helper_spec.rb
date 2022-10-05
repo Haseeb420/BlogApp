@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe PostsHelper, type: :helper do
   let(:user) { create(:user) }
-  let!(:post_count) { Post.count }
+  let(:post_count) { Post.count }
   let(:category) { create(:post_category) }
-  let!(:post1) do
+  let(:post1) do
     create(:post, title: 'this is my titile', user_id: user.id, post_category_id: category.id,
                   status: 'approved')
   end
-  let!(:post_count) { Post.count }
+  let(:post_count) { Post.count }
 
   it 'get Post Title by id' do
     expect(helper.get_post_title_id(post1.id)).to eq('this is my titile')
