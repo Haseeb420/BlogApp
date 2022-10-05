@@ -6,7 +6,7 @@ RSpec.describe Suggestion, type: :model do
   subject { build(:suggestion) }
 
   context 'Association tests' do
-    it { should belong_to(:post).class_name('Post') }
+    it { should belong_to(:post) }
   end
 
   context 'Validation tests' do

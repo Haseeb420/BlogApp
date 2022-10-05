@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe CommentLike, type: :model do
   context 'Association Tests' do
-    it { should belong_to(:user).class_name('User') }
-    it { should belong_to(:comment).class_name('Comment') }
+    it { should belong_to(:user) }
+    it { should belong_to(:comment) }
   end
 
   describe 'DB Tests' do

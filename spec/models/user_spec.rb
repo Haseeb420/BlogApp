@@ -17,10 +17,10 @@ RSpec.describe User, type: :model do
   end
 
   context 'Association Tests' do
-    it { should have_many(:posts).class_name('Post').dependent(:delete_all) }
-    it { should have_one(:post_like).class_name('PostLike').dependent(:delete) }
-    it { should have_many(:comments).class_name('Comment').dependent(:delete_all) }
-    it { should have_one(:comment_like).class_name('CommentLike').dependent(:delete) }
+    it { should have_many(:posts).dependent(:delete_all) }
+    it { should have_one(:post_like).dependent(:delete) }
+    it { should have_many(:comments).dependent(:delete_all) }
+    it { should have_one(:comment_like).dependent(:delete) }
 
     it {
       expect(subject).to have_many(:reported_posts).class_name('ReportedPost').dependent(:delete_all)

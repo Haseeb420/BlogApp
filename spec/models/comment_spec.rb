@@ -11,10 +11,10 @@ RSpec.describe Comment, type: :model do
   let(:comment1) { create(:comment, post_id: post1.id, user_id: user.id) }
 
   context 'Association Tests' do
-    it { should belong_to(:user).class_name('User') }
-    it { should belong_to(:post).class_name('Post') }
+    it { should belong_to(:user) }
+    it { should belong_to(:post) }
     it { should belong_to(:parent).class_name('Comment').optional(:true) }
-    it { should have_many(:comment_likes).class_name('CommentLike').dependent(:delete_all) }
+    it { should have_many(:comment_likes).dependent(:delete_all) }
     it { should have_many(:replies).class_name('Comment').dependent(:destroy) }
   end
 

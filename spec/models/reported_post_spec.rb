@@ -6,8 +6,8 @@ RSpec.describe ReportedPost, type: :model do
   subject { build(:reported_post) }
 
   context 'Association Test Cases' do
-    it { should belong_to(:user).class_name('User') }
-    it { should belong_to(:post).class_name('Post') }
+    it { should belong_to(:user) }
+    it { should belong_to(:post) }
   end
 
   context 'Validation Test Cases' do

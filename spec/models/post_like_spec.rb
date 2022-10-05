@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe PostLike, type: :model do
   context 'Association Tests' do
-    it { should belong_to(:user).class_name('User') }
-    it { should belong_to(:post).class_name('Post') }
+    it { should belong_to(:user) }
+    it { should belong_to(:post) }
   end
 
   describe 'DB Tests' do

@@ -11,7 +11,7 @@ RSpec.describe Post, type: :model do
   let(:post1_like) { create(:post_like, user_id: user.id, post_id: post1.id) }
 
   context 'Association Tests' do
-    it { should belong_to(:user).class_name('User') }
+    it { should belong_to(:user) }
     it { should belong_to(:post_category) }
     it { should have_many(:comments).dependent(:destroy) }
     it { should have_many(:post_likes) }

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PostCategory, type: :model do
   context 'Associations Tests' do
-    it { should have_many(:posts).class_name('Post') }
+    it { should have_many(:posts) }
   end
 
   describe 'Validation Tests' do
