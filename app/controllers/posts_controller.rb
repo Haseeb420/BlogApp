@@ -93,13 +93,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def post_list
-    @post = policy_scope(Post)
-    authorize @post
-    @posts = Post.all_posts.ordered
-    render json: @posts
-  end
-
   private
     def post_param
       params.require(:post).permit(:title, :body, :header_img, :post_category_id)
