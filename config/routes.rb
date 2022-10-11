@@ -36,11 +36,6 @@ Rails.application.routes.draw do
     resources :suggestions
     resources :reported_posts
   end
-  namespace 'api' do
-    namespace 'v1' do
-      resources :posts
-    end
-  end
   get 'moderators/dashboard' => 'moderators#index', as: 'moderator_dashboard'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
