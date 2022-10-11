@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :images, only: %i[show create]
   get 'home/index' => 'home#index', as: 'welcome_page'
   get 'home/about' => 'home#about', as: 'about_page'
+  get 'post/posts_list' => 'posts#post_list', as: 'list_post'
 
   post '/posts/:post_id/comments-reply' => 'comments#reply', as: 'comment_reply'
 
@@ -36,7 +37,11 @@ Rails.application.routes.draw do
     resources :suggestions
     resources :reported_posts
   end
-
+  namespace 'api' do
+    namespace 'v1' do
+      resources :posts
+    end
+  end
   get 'moderators/dashboard' => 'moderators#index', as: 'moderator_dashboard'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -2,10 +2,10 @@
 
 # app/controllers/post_controller
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show]
-  before_action :set_post, except: %i[new create index recent]
-  after_action :verify_authorized, except: :index
-  after_action :verify_policy_scoped, only: :index
+  skip_before_action :authenticate_user!, only: [:show, :post_list]
+  before_action :set_post, except: %i[new create index recent post_list]
+  after_action :verify_authorized, except: [:index, :post_list]
+  after_action :verify_policy_scoped, only: [:index, :post_list]
 
   def index
     @post = policy_scope(Post)
@@ -15,6 +15,13 @@ class PostsController < ApplicationController
 
   def show
     authorize @post
+    respond_to do |format|
+      format.json do
+        user =  User.find(@post.user_id)
+        render json: @post.as_json().merge({header_img: @post.header_img.service_url,user_name:"#{user.first_name} #{user.last_name}".capitalize()})
+      end
+      format.html
+    end
   end
 
   def new
@@ -25,6 +32,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_param)
     authorize @post
+    puts @post.body
     @post.user_id = current_user.id
     respond_to do |format|
       if @post.save
@@ -83,6 +91,13 @@ class PostsController < ApplicationController
       format.html { render layout: 'moderator_dashboard' }
       format.js
     end
+  end
+
+  def post_list
+    @post = policy_scope(Post)
+    authorize @post
+    @posts = Post.all_posts.ordered
+    render json: @posts
   end
 
   private

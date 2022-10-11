@@ -10,7 +10,6 @@ class PostPolicy < ApplicationPolicy
 
   def new?
     user.present?
-    # return  true
   end
 
   def show?
@@ -47,5 +46,8 @@ class PostPolicy < ApplicationPolicy
 
   def post_approval?
     user.moderator?
+  end
+  def post_list?
+    true
   end
 end
