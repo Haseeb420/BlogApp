@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   resources :images, only: %i[show create]
   get 'home/index' => 'home#index', as: 'welcome_page'
   get 'home/about' => 'home#about', as: 'about_page'
-  get 'post/posts_list' => 'posts#post_list', as: 'list_post'
 
   post '/posts/:post_id/comments-reply' => 'comments#reply', as: 'comment_reply'
 
