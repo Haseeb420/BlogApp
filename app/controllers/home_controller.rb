@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.json do
         @posts = Post.all_posts.ordered
-        @posts = @posts.map { |post| post.as_json.merge({ header_img: post.header_img.service_url,user_name:authur_name_by_id(post.user_id) }) }
+        @posts = @posts.map { |post| post.as_json.merge({ header_img: post.header_img.service_url, user_name: authur_name_by_id(post.user_id) }) }
         render json: @posts
       end
       format.html do
