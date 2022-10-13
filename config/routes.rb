@@ -38,5 +38,13 @@ Rails.application.routes.draw do
   end
   get 'moderators/dashboard' => 'moderators#index', as: 'moderator_dashboard'
 
+  # api urls start here
+  namespace :api do
+    namespace :v1 do
+      resources :posts, only: %i[show index]
+    end
+  end
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
