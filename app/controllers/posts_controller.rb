@@ -17,8 +17,8 @@ class PostsController < ApplicationController
     authorize @post
     respond_to do |format|
       format.json do
-        user =  User.find(@post.user_id)
-        render json: @post.as_json().merge({header_img: @post.header_img.service_url,user_name:"#{user.first_name} #{user.last_name}".capitalize()})
+        user = User.find(@post.user_id)
+        render json: @post.as_json().merge({ header_img: @post.header_img.service_url, user_name: "#{user.first_name} #{user.last_name}".capitalize() })
       end
       format.html
     end
