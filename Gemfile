@@ -49,7 +49,7 @@ gem 'cloudinary'
 gem 'kaminari'
 gem 'mini_magick', '~> 4.8'
 gem 'rails_admin'
-
+gem 'active_model_serializers', '~> 0.10.13'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
