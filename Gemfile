@@ -24,6 +24,8 @@ gem 'cloudinary'
 gem 'kaminari'
 gem 'mini_magick', '~> 4.8'
 gem 'rails_admin'
+gem 'active_model_serializers', '~> 0.10.13'
+
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'figaro', '~> 1.2'
 gem 'activestorage-validator'
