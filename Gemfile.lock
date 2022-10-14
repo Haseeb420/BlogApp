@@ -213,7 +213,6 @@ GEM
       actionmailer (>= 3)
       premailer (~> 1.7, >= 1.7.9)
     public_suffix (5.0.0)
-    puma (3.12.6)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
     racc (1.6.0)
@@ -449,7 +448,6 @@ DEPENDENCIES
   pg
   popper_js (~> 2.11, >= 2.11.5)
   premailer-rails
-  puma (~> 3.11)
   pundit
   rack-cors
   rails (~> 5.2.8, >= 5.2.8.1)
