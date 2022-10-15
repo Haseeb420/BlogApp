@@ -10,7 +10,7 @@ class CommentLikesController < ApplicationController
       @comment.add_user_comment_like(current_user.id)
     end
     respond_to do |format|
-      format.json { }
+      format.json {}
       format.js { @comment }
     end
   end
@@ -20,11 +20,12 @@ class CommentLikesController < ApplicationController
   end
 
   private
-    def comment_like_params
-      params.require(:comment_like).permit(:post_id, :user_id)
-    end
 
-    def set_comment
-      @comment = Comment.find(params[:comment_id])
-    end
+  def comment_like_params
+    params.require(:comment_like).permit(:post_id, :user_id)
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:comment_id])
+  end
 end

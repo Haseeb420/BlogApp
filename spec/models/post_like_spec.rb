@@ -4,19 +4,19 @@ require 'rails_helper'
 
 RSpec.describe PostLike, type: :model do
   context 'Association Tests' do
-    it { should belong_to(:user) }
-    it { should belong_to(:post) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:post) }
   end
 
   describe 'DB Tests' do
     context 'Column Tests' do
-      it { should have_db_column(:user_id) }
-      it { should have_db_column(:post_id) }
+      it { is_expected.to have_db_column(:user_id) }
+      it { is_expected.to have_db_column(:post_id) }
     end
 
     context 'Index Tests' do
-      it { should have_db_index(:user_id) }
-      it { should have_db_index(:post_id) }
+      it { is_expected.to have_db_index(:user_id) }
+      it { is_expected.to have_db_index(:post_id) }
     end
   end
 end

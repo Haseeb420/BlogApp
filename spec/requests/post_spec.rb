@@ -4,8 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   let(:login_user) { create(:user, confirmed_at: Time.zone.now.getutc) }
-  let(:moderator) { create(:user, email: 'md@gmail.com', confirmed_at: Time.zone.now.getutc,
-                             user_role: 'moderator') }
+  let(:moderator) do
+    create(:user, email: 'md@gmail.com', confirmed_at: Time.zone.now.getutc,
+                  user_role: 'moderator')
+  end
   let(:category) { create(:post_category, category_name: 'testing') }
   let(:header_img) do
     Rack::Test::UploadedFile.new Rails.root.join('public/assets/profile_img-9f7db6fe66a347566157a80fad374979fca61f81dfef6250c43f69fb87385aa6.jpg'),
@@ -37,9 +39,10 @@ RSpec.describe 'Posts', type: :request do
   before do
     sign_in(login_user)
   end
+
   describe 'GET #index' do
     context 'should all post of user' do
-      it  do
+      it do
         get posts_path
         expect(response).to have_http_status(:ok)
         expect(response).to render_template(:index)
@@ -107,15 +110,16 @@ RSpec.describe 'Posts', type: :request do
 
   describe 'Patch #update Post' do
     context 'should update post with valid arguments' do
-      it  do
+      it do
         patch post_path(post1), params: { post: { title: 'I am updating this' } }
         expect(flash['notice']).to eq('Post Updated Succesfully')
         post1.reload
         expect(post1.title).to eq('I am updating this')
       end
     end
+
     context 'should not update post with in-valid attributes' do
-      it  do
+      it do
         patch post_path(post1), params: { post: { body: 'I am' } }
         expect(flash['alert']).to eq('Post not Updated Succesfully')
         expect(response).to have_http_status(:unprocessable_entity)
@@ -130,11 +134,13 @@ RSpec.describe 'Posts', type: :request do
         expect(response).to have_http_status(:redirect)
       end
     end
+
     context "shouldn't delete post" do
-      before(:each) do
+      before do
         allow(post1).to receive(:destroy).and_return(false)
         allow(Post).to receive(:find).and_return(post1)
       end
+
       it do
         delete post_path(post1)
         expect(flash['alert']).to eq('Post not deleted')
@@ -144,9 +150,10 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe 'Moderator user methods testing authorization' do
-    before(:each) do
+    before do
       sign_in(moderator)
     end
+
     describe 'GET #post_approval' do
       context 'should approved Post' do
         it 'post status should be equal to approved' do
@@ -174,6 +181,7 @@ RSpec.describe 'Posts', type: :request do
           expect(response).to have_http_status(:ok)
         end
       end
+
       context 'should expect to redirects to root with alert when a simple user' do
         it do
           sign_out(moderator)

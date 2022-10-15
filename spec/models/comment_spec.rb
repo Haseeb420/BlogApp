@@ -11,15 +11,15 @@ RSpec.describe Comment, type: :model do
   let(:comment1) { create(:comment, post_id: post1.id, user_id: user.id) }
 
   context 'Association Tests' do
-    it { should belong_to(:user) }
-    it { should belong_to(:post) }
-    it { should belong_to(:parent).class_name('Comment').optional(:true) }
-    it { should have_many(:comment_likes).dependent(:delete_all) }
-    it { should have_many(:replies).class_name('Comment').dependent(:destroy) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:post) }
+    it { is_expected.to belong_to(:parent).class_name('Comment').optional(true) }
+    it { is_expected.to have_many(:comment_likes).dependent(:delete_all) }
+    it { is_expected.to have_many(:replies).class_name('Comment').dependent(:destroy) }
   end
 
   context 'Validation Tests' do
-    it { should validate_presence_of(:body) }
+    it { is_expected.to validate_presence_of(:body) }
   end
 
   describe 'Tests instance Methods' do
@@ -28,6 +28,7 @@ RSpec.describe Comment, type: :model do
         it { expect(subject.user_comment_like_exists?(user.id)).to be(false) }
       end
     end
+
     describe '.add_user_comment_like' do
       context 'should Add User comment like' do
         it do
@@ -50,16 +51,16 @@ RSpec.describe Comment, type: :model do
 
   describe 'Db Tests' do
     context 'Db Table Column Tests' do
-      it { should have_db_column(:user_id) }
-      it { should have_db_column(:post_id) }
-      it { should have_db_column(:parent_id) }
-      it { should have_db_column(:body) }
-      it { should have_db_column(:commented_on) }
+      it { is_expected.to have_db_column(:user_id) }
+      it { is_expected.to have_db_column(:post_id) }
+      it { is_expected.to have_db_column(:parent_id) }
+      it { is_expected.to have_db_column(:body) }
+      it { is_expected.to have_db_column(:commented_on) }
     end
 
     context 'Db Index Tests' do
-      it { should have_db_index(:user_id) }
-      it { should have_db_index(:post_id) }
+      it { is_expected.to have_db_index(:user_id) }
+      it { is_expected.to have_db_index(:post_id) }
     end
   end
 end

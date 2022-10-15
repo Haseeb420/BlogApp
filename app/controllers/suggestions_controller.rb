@@ -11,10 +11,10 @@ class SuggestionsController < ApplicationController
 
   def create
     @notice = if @suggestion.save
-      'Suggestion added successfully'
-    else
-      'Suggestion not added'
-    end
+                'Suggestion added successfully'
+              else
+                'Suggestion not added'
+              end
     respond_to do |format|
       format.js { render 'posts/post_details.js.erb' }
     end
@@ -29,15 +29,16 @@ class SuggestionsController < ApplicationController
   end
 
   private
-    def suggestion_params
-      params.require(:suggestion).permit(:body)
-    end
 
-    def build_suggestion
-      @suggestion = @post.suggestions.build(suggestion_params)
-    end
+  def suggestion_params
+    params.require(:suggestion).permit(:body)
+  end
 
-    def set_suggestion
-      @suggestion = Suggestion.find(params[:id])
-    end
+  def build_suggestion
+    @suggestion = @post.suggestions.build(suggestion_params)
+  end
+
+  def set_suggestion
+    @suggestion = Suggestion.find(params[:id])
+  end
 end

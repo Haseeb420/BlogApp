@@ -41,7 +41,8 @@ class Post < ApplicationRecord
   end
 
   private
-    def set_default_role
-      self.status ||= :not_approved
-    end
+
+  def set_default_role
+    self.status ||= :not_approved
+  end
 end

@@ -2,10 +2,10 @@
 
 # app/controllers/post_controller
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :post_list]
+  skip_before_action :authenticate_user!, only: %i[show post_list]
   before_action :set_post, except: %i[new create index recent post_list]
-  after_action :verify_authorized, except: [:index, :post_list]
-  after_action :verify_policy_scoped, only: [:index, :post_list]
+  after_action :verify_authorized, except: %i[index post_list]
+  after_action :verify_policy_scoped, only: %i[index post_list]
 
   def index
     @post = policy_scope(Post)
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_param)
     authorize @post
-    puts @post.body
+    Rails.logger.debug @post.body
     @post.user_id = current_user.id
     respond_to do |format|
       if @post.save
@@ -87,14 +87,15 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_param
-      params.require(:post).permit(:title, :body, :header_img, :post_category_id)
-    end
 
-    def set_post
-      @post = Post.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = 'Post not found'
-      redirect_to root_path
-    end
+  def post_param
+    params.require(:post).permit(:title, :body, :header_img, :post_category_id)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = 'Post not found'
+    redirect_to root_path
+  end
 end
