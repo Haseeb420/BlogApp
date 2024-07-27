@@ -18,7 +18,7 @@
     "rubocop": true
   },
   "editor.codeActionsOnSave": {
-    "ruby.rubocopAutocorrect": true
+    "ruby.rubocopAutocorrect": "explicit"
   },
   // Recommended when using Solargraph
   "ruby.intellisense": false,
